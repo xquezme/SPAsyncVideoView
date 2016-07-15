@@ -9,7 +9,13 @@
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
+## Demo
+
+![Demo](https://raw.githubusercontent.com/xquezme/SPAsyncVideoView/gh-pages/preview.gif)
+
 ## Requirements
+
+* iOS 8.0 or higher
 
 ## Installation
 
@@ -19,6 +25,22 @@ it, simply add the following line to your Podfile:
 ```ruby
 pod "SPAsyncVideoView"
 ```
+
+## Usage Example
+
+``` objective-c
+NSURL *url = [[NSBundle mainBundle] URLForResource:@"example" withExtension:@"mp4"];
+SPAsyncVideoAsset *asset = [[SPAsyncVideoAsset alloc] initWithURL:url];
+SPAsyncVideoView *view = [SPAsyncVideoView new];
+view.asset = asset;
+```
+
+## Current limitations
+
+* No audio.
+* No controls.
+* Working only with local videos.
+
 
 ## Author
 
