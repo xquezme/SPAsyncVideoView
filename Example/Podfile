@@ -1,0 +1,12 @@
+use_frameworks!
+
+target 'SPAsyncVideoView_Example' do
+  pod 'SPAsyncVideoView', :path => '../'
+  pod 'JPFPSStatus', '~> 0.1'
+  
+  target 'SPAsyncVideoView_Tests' do
+    inherit! :search_paths
+
+    pod 'FBSnapshotTestCase'
+  end
+end

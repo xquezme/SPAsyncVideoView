@@ -1,0 +1,22 @@
+{
+  "name": "SPAsyncVideoView",
+  "version": "0.1.0",
+  "summary": "A short description of SPAsyncVideoView.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/<GITHUB_USERNAME>/SPAsyncVideoView",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Pimenov Sergey": "pimenov.sergei@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/<GITHUB_USERNAME>/SPAsyncVideoView.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "SPAsyncVideoView/Classes/**/*"
+}

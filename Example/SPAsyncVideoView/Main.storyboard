@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="VRb-TU-tSO">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EBk-lG-T5i">
+            <objects>
+                <tableViewController id="nAF-ng-BLp" customClass="SPViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="kQ5-NE-3MV">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Default" rowHeight="240" id="XVP-ae-doS" customClass="SPViewCell">
+                                <rect key="frame" x="0.0" y="92" width="600" height="240"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XVP-ae-doS" id="8rU-IX-NcI">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="239"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YWN-FE-nQw" userLabel="Video View" customClass="SPAsyncVideoView">
+                                            <rect key="frame" x="8" y="8" width="584" height="223"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="YWN-FE-nQw" firstAttribute="top" secondItem="8rU-IX-NcI" secondAttribute="topMargin" id="ZR7-f4-fcD"/>
+                                        <constraint firstItem="YWN-FE-nQw" firstAttribute="leading" secondItem="8rU-IX-NcI" secondAttribute="leadingMargin" id="aQI-c7-zm6"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="YWN-FE-nQw" secondAttribute="trailing" id="dQM-gO-eeI"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="YWN-FE-nQw" secondAttribute="bottom" id="lgT-rQ-Sbs"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
+                                <connections>
+                                    <outlet property="videoView" destination="YWN-FE-nQw" id="fLg-hV-ucw"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="nAF-ng-BLp" id="V3t-c4-HUK"/>
+                            <outlet property="delegate" destination="nAF-ng-BLp" id="Ogn-zE-idQ"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="cUk-s2-WoZ"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hl9-i2-LjR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1211" y="299"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="JuQ-4G-PQB">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="VRb-TU-tSO" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="h3U-nd-aLm">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="nAF-ng-BLp" kind="relationship" relationship="rootViewController" id="etV-dc-PKf"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jNX-fV-Yy7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="334" y="-393"/>
+        </scene>
+    </scenes>
+</document>

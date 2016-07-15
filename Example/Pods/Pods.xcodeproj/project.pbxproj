@@ -1,0 +1,1119 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		11C22C7B844DF31A5EBDC9AC132C5E94 /* UIImage+Compare.m in Sources */ = {isa = PBXBuildFile; fileRef = 62BEDF0DC67966905CEB1430160F6D2F /* UIImage+Compare.m */; };
+		130F048002A62769FAFCC66F2C79391A /* FBSnapshotTestController.h in Headers */ = {isa = PBXBuildFile; fileRef = 9FE486FC250D7BA59F9A3FFDFE887D01 /* FBSnapshotTestController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1DA51FC1E60793EEB422A8335F9A5E5C /* SPAsyncVideoView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 220DFE9E72C365F89F2B31D311904DF1 /* SPAsyncVideoView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2A4F6BBE4856F40F6796561EDAF9E453 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F1B0A45F864B16BBE8E470C07F8F740 /* Foundation.framework */; };
+		2C87E1788C8FA06AE3481A2226E3AF2D /* UIApplication+StrictKeyWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 9660F4E715D9ADD75431669BC16590FE /* UIApplication+StrictKeyWindow.m */; };
+		34A1C7E576C58A9D3F3101448308BF3E /* UIImage+Snapshot.h in Headers */ = {isa = PBXBuildFile; fileRef = 079635BFD61A8D47E4791E772DC8E88F /* UIImage+Snapshot.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		34FFE1ADE057A872D1C5409F30419F7A /* JPFPSStatus.h in Headers */ = {isa = PBXBuildFile; fileRef = FC077A6A2CF795CCFFA512DEADA9D176 /* JPFPSStatus.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		384CDD8BD1F1E92BCEE258D2F707948B /* SPAsyncVideoView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 35BDBBDD9AC632E2EE4F40D7A0EB0A24 /* SPAsyncVideoView-dummy.m */; };
+		3CA824EF3315EC439DEE932448C4558B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23CD3E7B203996A0AD52CB5A5492AB0D /* UIKit.framework */; };
+		497AA8816FC08215EF4C2431E1986992 /* FBSnapshotTestCase-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 318E36B08F372433DCECE315AC3164DF /* FBSnapshotTestCase-dummy.m */; };
+		59AD8C340112A18682CECE1C66D2A28E /* SPAsyncVideoAsset.h in Headers */ = {isa = PBXBuildFile; fileRef = 40E89855946E1ED0DB7A4508B2754CF8 /* SPAsyncVideoAsset.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		61EBC5CF0D5E065C88028B49C6B8D3B3 /* UIImage+Diff.h in Headers */ = {isa = PBXBuildFile; fileRef = 3FE375C819A7A10A4303D9FE537878BD /* UIImage+Diff.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		68B245DB47CA60F8F9ADCA1E8CCDC324 /* UIApplication+StrictKeyWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 069607651436BBC6C06F7F16ED41370A /* UIApplication+StrictKeyWindow.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		6914EE43A9B8B8D30220B3B6B0D57523 /* FBSnapshotTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = BCA372ECE0AA08D15DAAA2775B159AD1 /* FBSnapshotTestCase.m */; };
+		6C1CD76216CE63361FC894C1AE7A02BB /* SPAsyncVideoView.h in Headers */ = {isa = PBXBuildFile; fileRef = A671BE7CE6B9CDDE44EF86908C074D74 /* SPAsyncVideoView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E4A16BF4D27C48BB1FE1E1CF5E8B90E /* FBSnapshotTestCasePlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = D16F73B32801B03470CBE74D9B0C06B5 /* FBSnapshotTestCasePlatform.m */; };
+		717D2567E8FB8813E9F5A7DCBA7B3155 /* SPAsyncVideoAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = A15C191D86F58DC406A5897C7E8E21F2 /* SPAsyncVideoAsset.m */; };
+		71FA0F82D3EF337D4A7640B79A0EBEED /* Pods-SPAsyncVideoView_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B07BBEA4839523514249E3D367EAE2F5 /* Pods-SPAsyncVideoView_Example-dummy.m */; };
+		73B96724E9D2B03677BA3C2D24601D64 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF31F155B6FBBDD8C6F4E390A699C8D8 /* XCTest.framework */; };
+		7869EC9975104AD7486E594AA0500936 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F1B0A45F864B16BBE8E470C07F8F740 /* Foundation.framework */; };
+		7C66B4D0D09927A5F07D51711DCF818E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F1B0A45F864B16BBE8E470C07F8F740 /* Foundation.framework */; };
+		85D178DFCA1BC67BBFB1188E34EC5B19 /* SwiftSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCC4F1C38C2939EC151902EFAAB3C9D /* SwiftSupport.swift */; };
+		8ACF6A5515A175054E22414BF740EF14 /* FBSnapshotTestCase.h in Headers */ = {isa = PBXBuildFile; fileRef = B80AB5118CDDB44DAD6B514BF2C1AD2B /* FBSnapshotTestCase.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		92CE32E48C5AD06E5DC10CFE40287B55 /* SPAsyncVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B3E0A99A90A335FEBFA1372FCFFA92 /* SPAsyncVideoView.m */; };
+		9FA3B93CE0ECAC3CDC30890659AACF82 /* FBSnapshotTestCasePlatform.h in Headers */ = {isa = PBXBuildFile; fileRef = 168828B073D50E7F994AD4A59A42D009 /* FBSnapshotTestCasePlatform.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A932B89F114B02D24B5FBF362FD0B9F9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F1B0A45F864B16BBE8E470C07F8F740 /* Foundation.framework */; };
+		AE26AF1AE928BD9CD98C146BA0D152ED /* Pods-SPAsyncVideoView_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B35C85F7E1B38F8A59540677C3A4DB /* Pods-SPAsyncVideoView_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B6A67A3B998747E4290BF6010EC33806 /* FBSnapshotTestCase-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E72C9E97A37A8868E6486C265FDB98F /* FBSnapshotTestCase-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C360952381641F725C15758993A0F665 /* UIImage+Diff.m in Sources */ = {isa = PBXBuildFile; fileRef = 009BE39AC9A34CEFC2CC10A6B59E8D3C /* UIImage+Diff.m */; };
+		CD463362BB875A00C9EDC2469AE47AC6 /* JPFPSStatus-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 30E1672D4D4320D4D34F491012D60F44 /* JPFPSStatus-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D5C30BC656C11AF60394E3180A217BB1 /* UIImage+Snapshot.m in Sources */ = {isa = PBXBuildFile; fileRef = C1E9846B9BEFCB15837BEA6762562454 /* UIImage+Snapshot.m */; };
+		D63F1316E3E0CB3CF3E1DE3F88B3A869 /* Pods-SPAsyncVideoView_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CD4C901EE2FC2E0941E1FA681071132 /* Pods-SPAsyncVideoView_Tests-dummy.m */; };
+		E7A2F4A913BEBA3393EC8BD1AF6C4D7E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F1B0A45F864B16BBE8E470C07F8F740 /* Foundation.framework */; };
+		EA164909737A723B8340DFCEB1F807E6 /* JPFPSStatus-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = ED887D8F74878B6743004CBB30546F45 /* JPFPSStatus-dummy.m */; };
+		EAA652557B70F493923A3447B5D64E0D /* UIImage+Compare.h in Headers */ = {isa = PBXBuildFile; fileRef = B09462CD71DBACE23A3EF929E5FFE1E0 /* UIImage+Compare.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		EC88111C5005B4A7E9478A167008BBBE /* JPFPSStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AA58E8B2223436A094BC445D25C9C1A /* JPFPSStatus.m */; };
+		F0B3BC4CE7B1074981F32DDD032E9539 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23CD3E7B203996A0AD52CB5A5492AB0D /* UIKit.framework */; };
+		F366B775C22BBE1DBAC7BDB7DE8F0A26 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A69AD0237CBECB2ED21B40E60E958C3 /* QuartzCore.framework */; };
+		F47158C234C50FFB069A1EF8AB26D9F1 /* FBSnapshotTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8749A440C8AC1313ED9BEFCD13926E5C /* FBSnapshotTestController.m */; };
+		FC4522F128F2D7D2DC933C9A71450E5A /* Pods-SPAsyncVideoView_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 33126135B2BCF731B6A654EF27310049 /* Pods-SPAsyncVideoView_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1A937997879A2A2A3DE5E0B3159A5028 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5DB46EA499F9A5E22765121102FCC34B;
+			remoteInfo = FBSnapshotTestCase;
+		};
+		3F513B67E00E975C78D6DF65B1BBC6CE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 160A5ACD70F61362E57FE1C2B1BDA2B5;
+			remoteInfo = SPAsyncVideoView;
+		};
+		7FC80F0625E7413D9FAC5248088B9B6A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FA0E7FFDD877C9CE51C91A0E6A3262E9;
+			remoteInfo = JPFPSStatus;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		009BE39AC9A34CEFC2CC10A6B59E8D3C /* UIImage+Diff.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Diff.m"; path = "FBSnapshotTestCase/Categories/UIImage+Diff.m"; sourceTree = "<group>"; };
+		04183B91DA1DC74B520C0D344471BA09 /* Pods-SPAsyncVideoView_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-SPAsyncVideoView_Example.modulemap"; sourceTree = "<group>"; };
+		069607651436BBC6C06F7F16ED41370A /* UIApplication+StrictKeyWindow.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIApplication+StrictKeyWindow.h"; path = "FBSnapshotTestCase/Categories/UIApplication+StrictKeyWindow.h"; sourceTree = "<group>"; };
+		079635BFD61A8D47E4791E772DC8E88F /* UIImage+Snapshot.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+Snapshot.h"; path = "FBSnapshotTestCase/Categories/UIImage+Snapshot.h"; sourceTree = "<group>"; };
+		0E72C9E97A37A8868E6486C265FDB98F /* FBSnapshotTestCase-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FBSnapshotTestCase-umbrella.h"; sourceTree = "<group>"; };
+		0E7D3925620660B55A23018DF62CB358 /* Pods-SPAsyncVideoView_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SPAsyncVideoView_Example-acknowledgements.plist"; sourceTree = "<group>"; };
+		168828B073D50E7F994AD4A59A42D009 /* FBSnapshotTestCasePlatform.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSnapshotTestCasePlatform.h; path = FBSnapshotTestCase/FBSnapshotTestCasePlatform.h; sourceTree = "<group>"; };
+		20804D176CC12CC973FAB71D0F29E407 /* Pods-SPAsyncVideoView_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SPAsyncVideoView_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		220DFE9E72C365F89F2B31D311904DF1 /* SPAsyncVideoView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SPAsyncVideoView-umbrella.h"; sourceTree = "<group>"; };
+		223D4F918A717ACB15A3ED639EA7DB0A /* Pods-SPAsyncVideoView_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SPAsyncVideoView_Tests-frameworks.sh"; sourceTree = "<group>"; };
+		23CD3E7B203996A0AD52CB5A5492AB0D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		25D5A051F76613306CCE9738ACBD91BA /* Pods-SPAsyncVideoView_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SPAsyncVideoView_Example-resources.sh"; sourceTree = "<group>"; };
+		2BA8C015219A7BD9D5395CC1CF866615 /* SPAsyncVideoView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SPAsyncVideoView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2BCC4F1C38C2939EC151902EFAAB3C9D /* SwiftSupport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftSupport.swift; path = FBSnapshotTestCase/SwiftSupport.swift; sourceTree = "<group>"; };
+		2F1B0A45F864B16BBE8E470C07F8F740 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		30E1672D4D4320D4D34F491012D60F44 /* JPFPSStatus-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "JPFPSStatus-umbrella.h"; sourceTree = "<group>"; };
+		318E36B08F372433DCECE315AC3164DF /* FBSnapshotTestCase-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FBSnapshotTestCase-dummy.m"; sourceTree = "<group>"; };
+		33126135B2BCF731B6A654EF27310049 /* Pods-SPAsyncVideoView_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SPAsyncVideoView_Example-umbrella.h"; sourceTree = "<group>"; };
+		35BDBBDD9AC632E2EE4F40D7A0EB0A24 /* SPAsyncVideoView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SPAsyncVideoView-dummy.m"; sourceTree = "<group>"; };
+		3A74728C8C40775F4FE8040CFE9A94B5 /* Pods_SPAsyncVideoView_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SPAsyncVideoView_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D9AC746336F447F0E16A579E8EB64A2 /* Pods-SPAsyncVideoView_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SPAsyncVideoView_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
+		3F075BB678E178DF5ADE0E4D71CA90E4 /* Pods-SPAsyncVideoView_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SPAsyncVideoView_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		3FE375C819A7A10A4303D9FE537878BD /* UIImage+Diff.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+Diff.h"; path = "FBSnapshotTestCase/Categories/UIImage+Diff.h"; sourceTree = "<group>"; };
+		40E89855946E1ED0DB7A4508B2754CF8 /* SPAsyncVideoAsset.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SPAsyncVideoAsset.h; sourceTree = "<group>"; };
+		42F10D8702E182107324EB264C2BD57A /* JPFPSStatus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JPFPSStatus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		458F63F21AD49D2EA637CF96548657A6 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		49940EDB3786A05CDD5709E943C5A241 /* JPFPSStatus.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = JPFPSStatus.modulemap; sourceTree = "<group>"; };
+		4AE0801CDD1B895C1490C26AF815226D /* FBSnapshotTestCase.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = FBSnapshotTestCase.modulemap; sourceTree = "<group>"; };
+		508BF5BA299B1CC7492357DAE2613335 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		55A3C0EECF544418D1DDEF3CD2A07FDD /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		62BEDF0DC67966905CEB1430160F6D2F /* UIImage+Compare.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Compare.m"; path = "FBSnapshotTestCase/Categories/UIImage+Compare.m"; sourceTree = "<group>"; };
+		660339ED9E24FA5BC3F14AF6E412C8D3 /* Pods-SPAsyncVideoView_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SPAsyncVideoView_Tests-resources.sh"; sourceTree = "<group>"; };
+		68DC11E7A9CF7B440D6F2680ADD90965 /* SPAsyncVideoView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SPAsyncVideoView.xcconfig; sourceTree = "<group>"; };
+		749EFBB95F769A20CC9F61710C6A0797 /* Pods-SPAsyncVideoView_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SPAsyncVideoView_Example-frameworks.sh"; sourceTree = "<group>"; };
+		8749A440C8AC1313ED9BEFCD13926E5C /* FBSnapshotTestController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSnapshotTestController.m; path = FBSnapshotTestCase/FBSnapshotTestController.m; sourceTree = "<group>"; };
+		89BA63BE4C86701213CC2634BAFDFDC9 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8CD4C901EE2FC2E0941E1FA681071132 /* Pods-SPAsyncVideoView_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SPAsyncVideoView_Tests-dummy.m"; sourceTree = "<group>"; };
+		8EDDAF82679C30F88C4D3C2F9F0A2E0F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9660F4E715D9ADD75431669BC16590FE /* UIApplication+StrictKeyWindow.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIApplication+StrictKeyWindow.m"; path = "FBSnapshotTestCase/Categories/UIApplication+StrictKeyWindow.m"; sourceTree = "<group>"; };
+		99B3E0A99A90A335FEBFA1372FCFFA92 /* SPAsyncVideoView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SPAsyncVideoView.m; sourceTree = "<group>"; };
+		9A69AD0237CBECB2ED21B40E60E958C3 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
+		9AA58E8B2223436A094BC445D25C9C1A /* JPFPSStatus.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JPFPSStatus.m; path = JPFPSStatus/JPFPSStatus/JPFPSStatus.m; sourceTree = "<group>"; };
+		9C4A7CAB1DDB4B4B6D40EC3BF584A20F /* Pods-SPAsyncVideoView_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SPAsyncVideoView_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		9FE486FC250D7BA59F9A3FFDFE887D01 /* FBSnapshotTestController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSnapshotTestController.h; path = FBSnapshotTestCase/FBSnapshotTestController.h; sourceTree = "<group>"; };
+		A132C168E4341A56D8A716B6E7C2DB7A /* Pods-SPAsyncVideoView_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SPAsyncVideoView_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		A15C191D86F58DC406A5897C7E8E21F2 /* SPAsyncVideoAsset.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SPAsyncVideoAsset.m; sourceTree = "<group>"; };
+		A1FB0B2688C9AEB662F5123F0A057769 /* Pods-SPAsyncVideoView_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SPAsyncVideoView_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
+		A6574956F8241A5E1650D0D32546864A /* JPFPSStatus.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = JPFPSStatus.xcconfig; sourceTree = "<group>"; };
+		A671BE7CE6B9CDDE44EF86908C074D74 /* SPAsyncVideoView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SPAsyncVideoView.h; sourceTree = "<group>"; };
+		AA77FFDC254DB58D92A30F42E0871A81 /* Pods_SPAsyncVideoView_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SPAsyncVideoView_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB16243FFC4D55B86932D880E5BCF6A3 /* SPAsyncVideoView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SPAsyncVideoView-prefix.pch"; sourceTree = "<group>"; };
+		AB84AAB96C073946366C7E799BFCC25C /* FBSnapshotTestCase.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FBSnapshotTestCase.xcconfig; sourceTree = "<group>"; };
+		B07BBEA4839523514249E3D367EAE2F5 /* Pods-SPAsyncVideoView_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SPAsyncVideoView_Example-dummy.m"; sourceTree = "<group>"; };
+		B09462CD71DBACE23A3EF929E5FFE1E0 /* UIImage+Compare.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+Compare.h"; path = "FBSnapshotTestCase/Categories/UIImage+Compare.h"; sourceTree = "<group>"; };
+		B80AB5118CDDB44DAD6B514BF2C1AD2B /* FBSnapshotTestCase.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSnapshotTestCase.h; path = FBSnapshotTestCase/FBSnapshotTestCase.h; sourceTree = "<group>"; };
+		BCA372ECE0AA08D15DAAA2775B159AD1 /* FBSnapshotTestCase.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSnapshotTestCase.m; path = FBSnapshotTestCase/FBSnapshotTestCase.m; sourceTree = "<group>"; };
+		C1E9846B9BEFCB15837BEA6762562454 /* UIImage+Snapshot.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Snapshot.m"; path = "FBSnapshotTestCase/Categories/UIImage+Snapshot.m"; sourceTree = "<group>"; };
+		C3B35C85F7E1B38F8A59540677C3A4DB /* Pods-SPAsyncVideoView_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SPAsyncVideoView_Tests-umbrella.h"; sourceTree = "<group>"; };
+		C6CC7DD7D4561B25F173AA2CCFD99BA7 /* SPAsyncVideoView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = SPAsyncVideoView.modulemap; sourceTree = "<group>"; };
+		CF31F155B6FBBDD8C6F4E390A699C8D8 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		D16F73B32801B03470CBE74D9B0C06B5 /* FBSnapshotTestCasePlatform.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSnapshotTestCasePlatform.m; path = FBSnapshotTestCase/FBSnapshotTestCasePlatform.m; sourceTree = "<group>"; };
+		E331E92D1B2157BCDFDDD48C9A72599F /* FBSnapshotTestCase-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FBSnapshotTestCase-prefix.pch"; sourceTree = "<group>"; };
+		E433FCC3B5301194500142C13677AEEF /* FBSnapshotTestCase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FBSnapshotTestCase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA9734B235B0E067214C70A1A670A62A /* JPFPSStatus-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "JPFPSStatus-prefix.pch"; sourceTree = "<group>"; };
+		ED887D8F74878B6743004CBB30546F45 /* JPFPSStatus-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "JPFPSStatus-dummy.m"; sourceTree = "<group>"; };
+		F345C8F95AAD070CAD992FE83DD4E69F /* Pods-SPAsyncVideoView_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SPAsyncVideoView_Example.release.xcconfig"; sourceTree = "<group>"; };
+		FC077A6A2CF795CCFFA512DEADA9D176 /* JPFPSStatus.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JPFPSStatus.h; path = JPFPSStatus/JPFPSStatus/JPFPSStatus.h; sourceTree = "<group>"; };
+		FDF8EF26CA296F567CD9DB466EC0F625 /* Pods-SPAsyncVideoView_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-SPAsyncVideoView_Tests.modulemap"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		087939C38B0152E3151E53492B5EB51F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7C66B4D0D09927A5F07D51711DCF818E /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		54F570FF464077C42B9F614A5957D5B1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A4F6BBE4856F40F6796561EDAF9E453 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5F2BCCE12D3857BD01126A06FE0041A1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E7A2F4A913BEBA3393EC8BD1AF6C4D7E /* Foundation.framework in Frameworks */,
+				3CA824EF3315EC439DEE932448C4558B /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D10E97A593AD82AF7D1688D7CE5016F9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7869EC9975104AD7486E594AA0500936 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F1A13ADE6C7840452C8DD4B939BFD24B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A932B89F114B02D24B5FBF362FD0B9F9 /* Foundation.framework in Frameworks */,
+				F366B775C22BBE1DBAC7BDB7DE8F0A26 /* QuartzCore.framework in Frameworks */,
+				F0B3BC4CE7B1074981F32DDD032E9539 /* UIKit.framework in Frameworks */,
+				73B96724E9D2B03677BA3C2D24601D64 /* XCTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		042AB9F3A20828B8222C8BBB35CC527E /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				40E89855946E1ED0DB7A4508B2754CF8 /* SPAsyncVideoAsset.h */,
+				A15C191D86F58DC406A5897C7E8E21F2 /* SPAsyncVideoAsset.m */,
+				A671BE7CE6B9CDDE44EF86908C074D74 /* SPAsyncVideoView.h */,
+				99B3E0A99A90A335FEBFA1372FCFFA92 /* SPAsyncVideoView.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		14B8B9B15ECBE87983FF987239AB2D7B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7AB6481CFE5F8A7F7E7C212E6398EC0C /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		24011FDE896CC87C636E8F4307AF96A2 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				B80AB5118CDDB44DAD6B514BF2C1AD2B /* FBSnapshotTestCase.h */,
+				BCA372ECE0AA08D15DAAA2775B159AD1 /* FBSnapshotTestCase.m */,
+				168828B073D50E7F994AD4A59A42D009 /* FBSnapshotTestCasePlatform.h */,
+				D16F73B32801B03470CBE74D9B0C06B5 /* FBSnapshotTestCasePlatform.m */,
+				9FE486FC250D7BA59F9A3FFDFE887D01 /* FBSnapshotTestController.h */,
+				8749A440C8AC1313ED9BEFCD13926E5C /* FBSnapshotTestController.m */,
+				069607651436BBC6C06F7F16ED41370A /* UIApplication+StrictKeyWindow.h */,
+				9660F4E715D9ADD75431669BC16590FE /* UIApplication+StrictKeyWindow.m */,
+				B09462CD71DBACE23A3EF929E5FFE1E0 /* UIImage+Compare.h */,
+				62BEDF0DC67966905CEB1430160F6D2F /* UIImage+Compare.m */,
+				3FE375C819A7A10A4303D9FE537878BD /* UIImage+Diff.h */,
+				009BE39AC9A34CEFC2CC10A6B59E8D3C /* UIImage+Diff.m */,
+				079635BFD61A8D47E4791E772DC8E88F /* UIImage+Snapshot.h */,
+				C1E9846B9BEFCB15837BEA6762562454 /* UIImage+Snapshot.m */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		26BACA6B91EA1E56DA53C95C8CCA4156 /* JPFPSStatus */ = {
+			isa = PBXGroup;
+			children = (
+				FC077A6A2CF795CCFFA512DEADA9D176 /* JPFPSStatus.h */,
+				9AA58E8B2223436A094BC445D25C9C1A /* JPFPSStatus.m */,
+				CBC18BF46BDCB06076FF0BE4F0A87879 /* Support Files */,
+			);
+			path = JPFPSStatus;
+			sourceTree = "<group>";
+		};
+		31608EF1A3B8F811BD346F7AC18F24CB /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				A0F8C53FECB784AD859110B7D867BE14 /* Pods-SPAsyncVideoView_Example */,
+				69F3BE7CDBA4257A23A6535BFE536BA6 /* Pods-SPAsyncVideoView_Tests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		362698B3109AA83E1E18145785BCFA92 /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DCC2CC7CDC0701C4B38659DF8AF882DB /* SPAsyncVideoView */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		481B61B348AABFD6A4902C42DA41A546 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E433FCC3B5301194500142C13677AEEF /* FBSnapshotTestCase.framework */,
+				42F10D8702E182107324EB264C2BD57A /* JPFPSStatus.framework */,
+				AA77FFDC254DB58D92A30F42E0871A81 /* Pods_SPAsyncVideoView_Example.framework */,
+				3A74728C8C40775F4FE8040CFE9A94B5 /* Pods_SPAsyncVideoView_Tests.framework */,
+				2BA8C015219A7BD9D5395CC1CF866615 /* SPAsyncVideoView.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		57E80741ACB9C4335D701905425E5E3D /* FBSnapshotTestCase */ = {
+			isa = PBXGroup;
+			children = (
+				24011FDE896CC87C636E8F4307AF96A2 /* Core */,
+				D8CA47E118D76E6ECAA60B1F98215785 /* Support Files */,
+				F3B54152B2456DE61481ABD8BAA1105A /* SwiftSupport */,
+			);
+			path = FBSnapshotTestCase;
+			sourceTree = "<group>";
+		};
+		69F3BE7CDBA4257A23A6535BFE536BA6 /* Pods-SPAsyncVideoView_Tests */ = {
+			isa = PBXGroup;
+			children = (
+				89BA63BE4C86701213CC2634BAFDFDC9 /* Info.plist */,
+				FDF8EF26CA296F567CD9DB466EC0F625 /* Pods-SPAsyncVideoView_Tests.modulemap */,
+				20804D176CC12CC973FAB71D0F29E407 /* Pods-SPAsyncVideoView_Tests-acknowledgements.markdown */,
+				A1FB0B2688C9AEB662F5123F0A057769 /* Pods-SPAsyncVideoView_Tests-acknowledgements.plist */,
+				8CD4C901EE2FC2E0941E1FA681071132 /* Pods-SPAsyncVideoView_Tests-dummy.m */,
+				223D4F918A717ACB15A3ED639EA7DB0A /* Pods-SPAsyncVideoView_Tests-frameworks.sh */,
+				660339ED9E24FA5BC3F14AF6E412C8D3 /* Pods-SPAsyncVideoView_Tests-resources.sh */,
+				C3B35C85F7E1B38F8A59540677C3A4DB /* Pods-SPAsyncVideoView_Tests-umbrella.h */,
+				A132C168E4341A56D8A716B6E7C2DB7A /* Pods-SPAsyncVideoView_Tests.debug.xcconfig */,
+				9C4A7CAB1DDB4B4B6D40EC3BF584A20F /* Pods-SPAsyncVideoView_Tests.release.xcconfig */,
+			);
+			name = "Pods-SPAsyncVideoView_Tests";
+			path = "Target Support Files/Pods-SPAsyncVideoView_Tests";
+			sourceTree = "<group>";
+		};
+		7AB6481CFE5F8A7F7E7C212E6398EC0C /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				2F1B0A45F864B16BBE8E470C07F8F740 /* Foundation.framework */,
+				9A69AD0237CBECB2ED21B40E60E958C3 /* QuartzCore.framework */,
+				23CD3E7B203996A0AD52CB5A5492AB0D /* UIKit.framework */,
+				CF31F155B6FBBDD8C6F4E390A699C8D8 /* XCTest.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				362698B3109AA83E1E18145785BCFA92 /* Development Pods */,
+				14B8B9B15ECBE87983FF987239AB2D7B /* Frameworks */,
+				900625C156A03238357ABD1DDC0880D8 /* Pods */,
+				481B61B348AABFD6A4902C42DA41A546 /* Products */,
+				31608EF1A3B8F811BD346F7AC18F24CB /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		8FBCC30CD13756DE98D71AD709B1711B /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				8EDDAF82679C30F88C4D3C2F9F0A2E0F /* Info.plist */,
+				C6CC7DD7D4561B25F173AA2CCFD99BA7 /* SPAsyncVideoView.modulemap */,
+				68DC11E7A9CF7B440D6F2680ADD90965 /* SPAsyncVideoView.xcconfig */,
+				35BDBBDD9AC632E2EE4F40D7A0EB0A24 /* SPAsyncVideoView-dummy.m */,
+				AB16243FFC4D55B86932D880E5BCF6A3 /* SPAsyncVideoView-prefix.pch */,
+				220DFE9E72C365F89F2B31D311904DF1 /* SPAsyncVideoView-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/SPAsyncVideoView";
+			sourceTree = "<group>";
+		};
+		900625C156A03238357ABD1DDC0880D8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				57E80741ACB9C4335D701905425E5E3D /* FBSnapshotTestCase */,
+				26BACA6B91EA1E56DA53C95C8CCA4156 /* JPFPSStatus */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		A0F8C53FECB784AD859110B7D867BE14 /* Pods-SPAsyncVideoView_Example */ = {
+			isa = PBXGroup;
+			children = (
+				508BF5BA299B1CC7492357DAE2613335 /* Info.plist */,
+				04183B91DA1DC74B520C0D344471BA09 /* Pods-SPAsyncVideoView_Example.modulemap */,
+				3D9AC746336F447F0E16A579E8EB64A2 /* Pods-SPAsyncVideoView_Example-acknowledgements.markdown */,
+				0E7D3925620660B55A23018DF62CB358 /* Pods-SPAsyncVideoView_Example-acknowledgements.plist */,
+				B07BBEA4839523514249E3D367EAE2F5 /* Pods-SPAsyncVideoView_Example-dummy.m */,
+				749EFBB95F769A20CC9F61710C6A0797 /* Pods-SPAsyncVideoView_Example-frameworks.sh */,
+				25D5A051F76613306CCE9738ACBD91BA /* Pods-SPAsyncVideoView_Example-resources.sh */,
+				33126135B2BCF731B6A654EF27310049 /* Pods-SPAsyncVideoView_Example-umbrella.h */,
+				3F075BB678E178DF5ADE0E4D71CA90E4 /* Pods-SPAsyncVideoView_Example.debug.xcconfig */,
+				F345C8F95AAD070CAD992FE83DD4E69F /* Pods-SPAsyncVideoView_Example.release.xcconfig */,
+			);
+			name = "Pods-SPAsyncVideoView_Example";
+			path = "Target Support Files/Pods-SPAsyncVideoView_Example";
+			sourceTree = "<group>";
+		};
+		BBA89ED6BD5F7E723A806F95DDF373EA /* SPAsyncVideoView */ = {
+			isa = PBXGroup;
+			children = (
+				042AB9F3A20828B8222C8BBB35CC527E /* Classes */,
+			);
+			path = SPAsyncVideoView;
+			sourceTree = "<group>";
+		};
+		CBC18BF46BDCB06076FF0BE4F0A87879 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				55A3C0EECF544418D1DDEF3CD2A07FDD /* Info.plist */,
+				49940EDB3786A05CDD5709E943C5A241 /* JPFPSStatus.modulemap */,
+				A6574956F8241A5E1650D0D32546864A /* JPFPSStatus.xcconfig */,
+				ED887D8F74878B6743004CBB30546F45 /* JPFPSStatus-dummy.m */,
+				EA9734B235B0E067214C70A1A670A62A /* JPFPSStatus-prefix.pch */,
+				30E1672D4D4320D4D34F491012D60F44 /* JPFPSStatus-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/JPFPSStatus";
+			sourceTree = "<group>";
+		};
+		D8CA47E118D76E6ECAA60B1F98215785 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				4AE0801CDD1B895C1490C26AF815226D /* FBSnapshotTestCase.modulemap */,
+				AB84AAB96C073946366C7E799BFCC25C /* FBSnapshotTestCase.xcconfig */,
+				318E36B08F372433DCECE315AC3164DF /* FBSnapshotTestCase-dummy.m */,
+				E331E92D1B2157BCDFDDD48C9A72599F /* FBSnapshotTestCase-prefix.pch */,
+				0E72C9E97A37A8868E6486C265FDB98F /* FBSnapshotTestCase-umbrella.h */,
+				458F63F21AD49D2EA637CF96548657A6 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/FBSnapshotTestCase";
+			sourceTree = "<group>";
+		};
+		DCC2CC7CDC0701C4B38659DF8AF882DB /* SPAsyncVideoView */ = {
+			isa = PBXGroup;
+			children = (
+				BBA89ED6BD5F7E723A806F95DDF373EA /* SPAsyncVideoView */,
+				8FBCC30CD13756DE98D71AD709B1711B /* Support Files */,
+			);
+			name = SPAsyncVideoView;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		F3B54152B2456DE61481ABD8BAA1105A /* SwiftSupport */ = {
+			isa = PBXGroup;
+			children = (
+				2BCC4F1C38C2939EC151902EFAAB3C9D /* SwiftSupport.swift */,
+			);
+			name = SwiftSupport;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		0AA9BDD2EE167077970D198258CF5519 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B6A67A3B998747E4290BF6010EC33806 /* FBSnapshotTestCase-umbrella.h in Headers */,
+				8ACF6A5515A175054E22414BF740EF14 /* FBSnapshotTestCase.h in Headers */,
+				9FA3B93CE0ECAC3CDC30890659AACF82 /* FBSnapshotTestCasePlatform.h in Headers */,
+				130F048002A62769FAFCC66F2C79391A /* FBSnapshotTestController.h in Headers */,
+				68B245DB47CA60F8F9ADCA1E8CCDC324 /* UIApplication+StrictKeyWindow.h in Headers */,
+				EAA652557B70F493923A3447B5D64E0D /* UIImage+Compare.h in Headers */,
+				61EBC5CF0D5E065C88028B49C6B8D3B3 /* UIImage+Diff.h in Headers */,
+				34A1C7E576C58A9D3F3101448308BF3E /* UIImage+Snapshot.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		520EE8488FA5ADB285BEE94D26E94575 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC4522F128F2D7D2DC933C9A71450E5A /* Pods-SPAsyncVideoView_Example-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		577237D290E757BC3D0BC31D0D33ED66 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AE26AF1AE928BD9CD98C146BA0D152ED /* Pods-SPAsyncVideoView_Tests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6FC408BA0126020319A8B74D16E36445 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				59AD8C340112A18682CECE1C66D2A28E /* SPAsyncVideoAsset.h in Headers */,
+				1DA51FC1E60793EEB422A8335F9A5E5C /* SPAsyncVideoView-umbrella.h in Headers */,
+				6C1CD76216CE63361FC894C1AE7A02BB /* SPAsyncVideoView.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E3321AC5723B132F6FA5DE28B898750F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CD463362BB875A00C9EDC2469AE47AC6 /* JPFPSStatus-umbrella.h in Headers */,
+				34FFE1ADE057A872D1C5409F30419F7A /* JPFPSStatus.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		160A5ACD70F61362E57FE1C2B1BDA2B5 /* SPAsyncVideoView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3E51CBDE10C5D72E9D92C4C7B69FD757 /* Build configuration list for PBXNativeTarget "SPAsyncVideoView" */;
+			buildPhases = (
+				80AFF1E57711DB2C8A08E39D32CB750C /* Sources */,
+				087939C38B0152E3151E53492B5EB51F /* Frameworks */,
+				6FC408BA0126020319A8B74D16E36445 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SPAsyncVideoView;
+			productName = SPAsyncVideoView;
+			productReference = 2BA8C015219A7BD9D5395CC1CF866615 /* SPAsyncVideoView.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		239B0A038DA7F8A9BC8FA4C3F7E84026 /* Pods-SPAsyncVideoView_Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 190030ABB85D1BF72DB408AB6E31DA52 /* Build configuration list for PBXNativeTarget "Pods-SPAsyncVideoView_Example" */;
+			buildPhases = (
+				2DA904A8B425D9B020197209A45AC07A /* Sources */,
+				54F570FF464077C42B9F614A5957D5B1 /* Frameworks */,
+				520EE8488FA5ADB285BEE94D26E94575 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E0EE4E9C525E769D7206D857F76557BA /* PBXTargetDependency */,
+				9C7EA70C6D4D5654233FC0225B93D4E4 /* PBXTargetDependency */,
+			);
+			name = "Pods-SPAsyncVideoView_Example";
+			productName = "Pods-SPAsyncVideoView_Example";
+			productReference = AA77FFDC254DB58D92A30F42E0871A81 /* Pods_SPAsyncVideoView_Example.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		5DB46EA499F9A5E22765121102FCC34B /* FBSnapshotTestCase */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8D492E06A9E9F494492A2A3B4D19493E /* Build configuration list for PBXNativeTarget "FBSnapshotTestCase" */;
+			buildPhases = (
+				7DE474775CBF413C7A124107E34E5614 /* Sources */,
+				F1A13ADE6C7840452C8DD4B939BFD24B /* Frameworks */,
+				0AA9BDD2EE167077970D198258CF5519 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FBSnapshotTestCase;
+			productName = FBSnapshotTestCase;
+			productReference = E433FCC3B5301194500142C13677AEEF /* FBSnapshotTestCase.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		71E6B4703057F4C3F8266B415678F914 /* Pods-SPAsyncVideoView_Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 17F7D571FA233100CE94EAFAC6BE68BD /* Build configuration list for PBXNativeTarget "Pods-SPAsyncVideoView_Tests" */;
+			buildPhases = (
+				048E49350E6010F9EB0A9ACA6D6F3706 /* Sources */,
+				D10E97A593AD82AF7D1688D7CE5016F9 /* Frameworks */,
+				577237D290E757BC3D0BC31D0D33ED66 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C776AD4F6BAC95988EC57C0BB6B1D9E1 /* PBXTargetDependency */,
+			);
+			name = "Pods-SPAsyncVideoView_Tests";
+			productName = "Pods-SPAsyncVideoView_Tests";
+			productReference = 3A74728C8C40775F4FE8040CFE9A94B5 /* Pods_SPAsyncVideoView_Tests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		FA0E7FFDD877C9CE51C91A0E6A3262E9 /* JPFPSStatus */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 63FD8BF7C9987B7B3A53FBE825060BD6 /* Build configuration list for PBXNativeTarget "JPFPSStatus" */;
+			buildPhases = (
+				4AA2887DDE425B159B813191B5B4F3C5 /* Sources */,
+				5F2BCCE12D3857BD01126A06FE0041A1 /* Frameworks */,
+				E3321AC5723B132F6FA5DE28B898750F /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JPFPSStatus;
+			productName = JPFPSStatus;
+			productReference = 42F10D8702E182107324EB264C2BD57A /* JPFPSStatus.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0700;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = 481B61B348AABFD6A4902C42DA41A546 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5DB46EA499F9A5E22765121102FCC34B /* FBSnapshotTestCase */,
+				FA0E7FFDD877C9CE51C91A0E6A3262E9 /* JPFPSStatus */,
+				239B0A038DA7F8A9BC8FA4C3F7E84026 /* Pods-SPAsyncVideoView_Example */,
+				71E6B4703057F4C3F8266B415678F914 /* Pods-SPAsyncVideoView_Tests */,
+				160A5ACD70F61362E57FE1C2B1BDA2B5 /* SPAsyncVideoView */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		048E49350E6010F9EB0A9ACA6D6F3706 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D63F1316E3E0CB3CF3E1DE3F88B3A869 /* Pods-SPAsyncVideoView_Tests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2DA904A8B425D9B020197209A45AC07A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				71FA0F82D3EF337D4A7640B79A0EBEED /* Pods-SPAsyncVideoView_Example-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4AA2887DDE425B159B813191B5B4F3C5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA164909737A723B8340DFCEB1F807E6 /* JPFPSStatus-dummy.m in Sources */,
+				EC88111C5005B4A7E9478A167008BBBE /* JPFPSStatus.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7DE474775CBF413C7A124107E34E5614 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				497AA8816FC08215EF4C2431E1986992 /* FBSnapshotTestCase-dummy.m in Sources */,
+				6914EE43A9B8B8D30220B3B6B0D57523 /* FBSnapshotTestCase.m in Sources */,
+				6E4A16BF4D27C48BB1FE1E1CF5E8B90E /* FBSnapshotTestCasePlatform.m in Sources */,
+				F47158C234C50FFB069A1EF8AB26D9F1 /* FBSnapshotTestController.m in Sources */,
+				85D178DFCA1BC67BBFB1188E34EC5B19 /* SwiftSupport.swift in Sources */,
+				2C87E1788C8FA06AE3481A2226E3AF2D /* UIApplication+StrictKeyWindow.m in Sources */,
+				11C22C7B844DF31A5EBDC9AC132C5E94 /* UIImage+Compare.m in Sources */,
+				C360952381641F725C15758993A0F665 /* UIImage+Diff.m in Sources */,
+				D5C30BC656C11AF60394E3180A217BB1 /* UIImage+Snapshot.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		80AFF1E57711DB2C8A08E39D32CB750C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				717D2567E8FB8813E9F5A7DCBA7B3155 /* SPAsyncVideoAsset.m in Sources */,
+				384CDD8BD1F1E92BCEE258D2F707948B /* SPAsyncVideoView-dummy.m in Sources */,
+				92CE32E48C5AD06E5DC10CFE40287B55 /* SPAsyncVideoView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9C7EA70C6D4D5654233FC0225B93D4E4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SPAsyncVideoView;
+			target = 160A5ACD70F61362E57FE1C2B1BDA2B5 /* SPAsyncVideoView */;
+			targetProxy = 3F513B67E00E975C78D6DF65B1BBC6CE /* PBXContainerItemProxy */;
+		};
+		C776AD4F6BAC95988EC57C0BB6B1D9E1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FBSnapshotTestCase;
+			target = 5DB46EA499F9A5E22765121102FCC34B /* FBSnapshotTestCase */;
+			targetProxy = 1A937997879A2A2A3DE5E0B3159A5028 /* PBXContainerItemProxy */;
+		};
+		E0EE4E9C525E769D7206D857F76557BA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = JPFPSStatus;
+			target = FA0E7FFDD877C9CE51C91A0E6A3262E9 /* JPFPSStatus */;
+			targetProxy = 7FC80F0625E7413D9FAC5248088B9B6A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		106AA604ABCCB575D81A83A71AA83E7D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 68DC11E7A9CF7B440D6F2680ADD90965 /* SPAsyncVideoView.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/SPAsyncVideoView/SPAsyncVideoView-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SPAsyncVideoView/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SPAsyncVideoView/SPAsyncVideoView.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = SPAsyncVideoView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		1EAB35ACB452D210D5CF60F7847CD85B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AB84AAB96C073946366C7E799BFCC25C /* FBSnapshotTestCase.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/FBSnapshotTestCase/FBSnapshotTestCase-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/FBSnapshotTestCase/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/FBSnapshotTestCase/FBSnapshotTestCase.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = FBSnapshotTestCase;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		43272239F6C187C70D8AFF822D403ED2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 68DC11E7A9CF7B440D6F2680ADD90965 /* SPAsyncVideoView.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/SPAsyncVideoView/SPAsyncVideoView-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SPAsyncVideoView/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SPAsyncVideoView/SPAsyncVideoView.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = SPAsyncVideoView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		47BEF9D903506B003EA5C2B249729489 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				ONLY_ACTIVE_ARCH = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		81C95E4110A85C53DB49EDE1AE71197A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3F075BB678E178DF5ADE0E4D71CA90E4 /* Pods-SPAsyncVideoView_Example.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-SPAsyncVideoView_Example/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-SPAsyncVideoView_Example/Pods-SPAsyncVideoView_Example.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_SPAsyncVideoView_Example;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		8AAA02CDE83F0230EC27E46A17630152 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A6574956F8241A5E1650D0D32546864A /* JPFPSStatus.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/JPFPSStatus/JPFPSStatus-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/JPFPSStatus/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/JPFPSStatus/JPFPSStatus.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = JPFPSStatus;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		97C1F76F8BA9FD064B9F103B18871260 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F345C8F95AAD070CAD992FE83DD4E69F /* Pods-SPAsyncVideoView_Example.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-SPAsyncVideoView_Example/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-SPAsyncVideoView_Example/Pods-SPAsyncVideoView_Example.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_SPAsyncVideoView_Example;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		AAF678CED40D3499169D10F63CA0719E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C0DFEA94F969ED0DBB9D7EFBAAAAD9A6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A6574956F8241A5E1650D0D32546864A /* JPFPSStatus.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/JPFPSStatus/JPFPSStatus-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/JPFPSStatus/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/JPFPSStatus/JPFPSStatus.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = JPFPSStatus;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		CDD7FC89A993C047A0B82953C8BCAC61 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9C4A7CAB1DDB4B4B6D40EC3BF584A20F /* Pods-SPAsyncVideoView_Tests.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-SPAsyncVideoView_Tests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-SPAsyncVideoView_Tests/Pods-SPAsyncVideoView_Tests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_SPAsyncVideoView_Tests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		E46327D215B69791A04530FE90DF62DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A132C168E4341A56D8A716B6E7C2DB7A /* Pods-SPAsyncVideoView_Tests.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-SPAsyncVideoView_Tests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-SPAsyncVideoView_Tests/Pods-SPAsyncVideoView_Tests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_SPAsyncVideoView_Tests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		F1966C59AF0C3A63F4C5A9E7987B3CB0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AB84AAB96C073946366C7E799BFCC25C /* FBSnapshotTestCase.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/FBSnapshotTestCase/FBSnapshotTestCase-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/FBSnapshotTestCase/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/FBSnapshotTestCase/FBSnapshotTestCase.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = FBSnapshotTestCase;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		17F7D571FA233100CE94EAFAC6BE68BD /* Build configuration list for PBXNativeTarget "Pods-SPAsyncVideoView_Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E46327D215B69791A04530FE90DF62DB /* Debug */,
+				CDD7FC89A993C047A0B82953C8BCAC61 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		190030ABB85D1BF72DB408AB6E31DA52 /* Build configuration list for PBXNativeTarget "Pods-SPAsyncVideoView_Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				81C95E4110A85C53DB49EDE1AE71197A /* Debug */,
+				97C1F76F8BA9FD064B9F103B18871260 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				47BEF9D903506B003EA5C2B249729489 /* Debug */,
+				AAF678CED40D3499169D10F63CA0719E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3E51CBDE10C5D72E9D92C4C7B69FD757 /* Build configuration list for PBXNativeTarget "SPAsyncVideoView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				106AA604ABCCB575D81A83A71AA83E7D /* Debug */,
+				43272239F6C187C70D8AFF822D403ED2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		63FD8BF7C9987B7B3A53FBE825060BD6 /* Build configuration list for PBXNativeTarget "JPFPSStatus" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8AAA02CDE83F0230EC27E46A17630152 /* Debug */,
+				C0DFEA94F969ED0DBB9D7EFBAAAAD9A6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8D492E06A9E9F494492A2A3B4D19493E /* Build configuration list for PBXNativeTarget "FBSnapshotTestCase" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1EAB35ACB452D210D5CF60F7847CD85B /* Debug */,
+				F1966C59AF0C3A63F4C5A9E7987B3CB0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}

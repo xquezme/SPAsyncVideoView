@@ -1,0 +1,6 @@
+framework module SPAsyncVideoView {
+  umbrella header "SPAsyncVideoView-umbrella.h"
+
+  export *
+  module * { export * }
+}
