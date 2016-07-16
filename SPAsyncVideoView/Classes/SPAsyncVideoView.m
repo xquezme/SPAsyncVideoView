@@ -16,6 +16,7 @@
 
 @property (nonatomic, strong) dispatch_queue_t workingQueue;
 @property (nonatomic, strong) AVAssetReader *assetReader;
+@property (nonatomic, assign) BOOL canRenderAsset;
 
 @end
 
@@ -46,6 +47,15 @@
         _asset = nil;
         [self stopVideo];
         return;
+    }
+
+    if (_asset != nil) {
+        @synchronized (self) {
+            [self flushAndStopReading];
+        }
+
+        [self.layer setNeedsDisplay];
+        [self.layer displayIfNeeded];
     }
 
     _asset = asset;
@@ -80,29 +90,45 @@
 }
 
 - (void)playVideo {
+    NSAssert([NSThread mainThread] == [NSThread mainThread], @"Thread checker");
+
     __weak typeof (self) weakSelf = self;
+
     dispatch_async(self.workingQueue, ^{
-        [weakSelf setupWithAsset:weakSelf.asset];
+        @synchronized (weakSelf) {
+            [weakSelf setupWithAsset:weakSelf.asset];
+        }
     });
 }
 
 - (void)stopVideo {
+    NSAssert([NSThread mainThread] == [NSThread mainThread], @"Thread checker");
+
     __weak typeof (self) weakSelf = self;
+
     dispatch_async(self.workingQueue, ^{
-        [weakSelf flushSync];
+        @synchronized (weakSelf) {
+            [weakSelf flushAndStopReading];
+        }
     });
 }
 
 #pragma mark - Private API
 
-- (void)flushSync {
+- (void)flush {
     AVSampleBufferDisplayLayer *displayLayer = [self displayLayer];
-    [displayLayer flushAndRemoveImage];
+
     [displayLayer stopRequestingMediaData];
+    [displayLayer flushAndRemoveImage];
+}
+
+- (void)flushAndStopReading {
     if (self.assetReader.status == AVAssetReaderStatusReading) {
         [self.assetReader cancelReading];
         self.assetReader = nil;
     }
+
+    [self flush];
 }
 
 - (void)commonInit {
@@ -111,6 +137,16 @@
     self.videoGravity = SPAsyncVideoViewVideoGravityResizeAspectFill;
     self.backgroundColor = [UIColor blackColor];
     self.autoPlay = YES;
+    self.canRenderAsset = [UIApplication sharedApplication].applicationState != UIApplicationStateBackground;
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationDidEnterBackground:)
+                                                 name:UIApplicationDidEnterBackgroundNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationWillEnterForeground:)
+                                                 name:UIApplicationWillEnterForegroundNotification
+                                               object:nil];
 }
 
 + (Class)layerClass {
@@ -122,51 +158,74 @@
 }
 
 - (void)setupWithAsset:(SPAsyncVideoAsset *)asset {
+    if (asset == nil || asset.url == nil) {
+        return;
+    }
+
     if (asset.asset == nil) {
         NSParameterAssert(asset.url);
         asset.asset = [AVURLAsset assetWithURL:asset.url];
     }
-    
+
     NSArray<NSString *> *keys = @[@"tracks", @"playable", @"duration"];
 
     __weak typeof (self) weakSelf = self;
     [self.asset.asset loadValuesAsynchronouslyForKeys:keys completionHandler:^{
-        @synchronized (self.workingQueue) {
+        @synchronized (weakSelf) {
             if (weakSelf.workingQueue == NULL) {
                 return;
             }
 
             dispatch_async(weakSelf.workingQueue, ^{
-                AVAsset *currentAVAsset = weakSelf.asset.asset;
-                NSDictionary *outputSettings = weakSelf.asset.outputSettings;
+                @synchronized (weakSelf) {
+                    AVURLAsset *currentAVAsset = weakSelf.asset.asset;
+                    NSDictionary *outputSettings = weakSelf.asset.outputSettings;
 
-                if (currentAVAsset == nil || ![weakSelf.asset isEqual:asset]) {
-                    return;
+                    if (currentAVAsset == nil || ![weakSelf.asset isEqual:asset]) {
+                        return;
+                    }
+                    @synchronized (currentAVAsset) {
+                        [weakSelf setupWithAVURLAsset:currentAVAsset
+                                       outputSettings:outputSettings];
+                    }
                 }
-
-                NSError *error = nil;
-                AVAssetReader *assetReader = [[AVAssetReader alloc] initWithAsset:currentAVAsset
-                                                                            error:&error];
-
-                if (error != nil) {
-                    [weakSelf notifyDelegateAboutError:error];
-                    return;
-                }
-
-                NSArray<AVAssetTrack *> *videoTracks = [currentAVAsset tracksWithMediaType:AVMediaTypeVideo];
-                AVAssetTrack *videoTrack = videoTracks.firstObject;
-                AVAssetReaderTrackOutput *outVideo = [AVAssetReaderTrackOutput assetReaderTrackOutputWithTrack:videoTrack
-                                                                                                outputSettings:outputSettings];
-
-                [assetReader addOutput:outVideo];
-
-                [weakSelf startReadingWithReader:assetReader];
             });
         }
     }];
 }
 
-- (void)resetControlTimeWithLayer:(AVSampleBufferDisplayLayer *)displayLayer {
+- (void)setupWithAVURLAsset:(AVURLAsset *)asset outputSettings:(NSDictionary *)outputSettings {
+    NSError *error = nil;
+    AVAssetReader *assetReader = [[AVAssetReader alloc] initWithAsset:(AVAsset *)asset
+                                                                error:&error];
+
+    if (error != nil) {
+        [self notifyDelegateAboutError:error];
+        return;
+    }
+
+    NSArray<AVAssetTrack *> *videoTracks = [asset tracksWithMediaType:AVMediaTypeVideo];
+    AVAssetTrack *videoTrack = videoTracks.firstObject;
+
+    if (videoTrack == nil) {
+        NSError *error = [NSError errorWithDomain:AVFoundationErrorDomain
+                                             code:AVErrorOperationNotSupportedForAsset
+                                         userInfo:nil];
+        [self notifyDelegateAboutError:error];
+        return;
+    }
+
+    AVAssetReaderTrackOutput *outVideo = [AVAssetReaderTrackOutput assetReaderTrackOutputWithTrack:videoTrack
+                                                                                    outputSettings:outputSettings];
+
+    [assetReader addOutput:outVideo];
+
+    [self startReadingWithReader:assetReader];
+}
+
+- (void)setCurrentControlTimebaseWithTime:(CMTime)time {
+    AVSampleBufferDisplayLayer *displayLayer = [self displayLayer];
+
     CMTimebaseRef controlTimebase;
     CMTimebaseCreateWithMasterClock(CFAllocatorGetDefault(),
                                     CMClockGetHostTimeClock(),
@@ -174,7 +233,7 @@
 
     displayLayer.controlTimebase = controlTimebase;
 
-    CMTimebaseSetTime(displayLayer.controlTimebase, CMTimeMake(0., 1.));
+    CMTimebaseSetTime(displayLayer.controlTimebase, time);
     CMTimebaseSetRate(displayLayer.controlTimebase, 1.);
 }
 
@@ -193,18 +252,23 @@
     _assetReader = assetReader;
 
     AVSampleBufferDisplayLayer *displayLayer = [self displayLayer];
-    [self resetControlTimeWithLayer:displayLayer];
+    [self setCurrentControlTimebaseWithTime:CMTimeMake(0., 1.)];
 
     __weak typeof (self) weakSelf = self;
+
     [displayLayer requestMediaDataWhenReadyOnQueue:self.workingQueue usingBlock:^{
         __strong typeof (weakSelf) strongSelf = weakSelf;
 
         @synchronized (strongSelf) {
-            if (!displayLayer.isReadyForMoreMediaData) {
+            if (!displayLayer.isReadyForMoreMediaData || displayLayer.status == AVQueuedSampleBufferRenderingStatusFailed) {
                 return;
             }
 
             if (assetReader.status != AVAssetReaderStatusReading) {
+                return;
+            }
+
+            if (!strongSelf.canRenderAsset) {
                 return;
             }
 
@@ -221,14 +285,13 @@
 
             switch (strongSelf.actionAtItemEnd) {
                 case SPAsyncVideoViewActionAtItemEndNone: {
-                    [displayLayer flushAndRemoveImage];
-                    [displayLayer stopRequestingMediaData];
+                    [weakSelf flush];
                     weakSelf.assetReader = nil;
                     break;
                 }
                 case SPAsyncVideoViewActionAtItemEndRepeat: {
-                    [displayLayer flushAndRemoveImage];
-                    [strongSelf resetControlTimeWithLayer:displayLayer];
+                    [displayLayer flush];
+                    [strongSelf setCurrentControlTimebaseWithTime:CMTimeMake(0., 1.)];
                     NSValue *beginingTimeRangeValue = [NSValue valueWithCMTimeRange:outVideo.track.timeRange];
                     [outVideo resetForReadingTimeRanges:@[beginingTimeRangeValue]];
                     sampleBuffer = [outVideo copyNextSampleBuffer];
@@ -249,10 +312,35 @@
     }
 }
 
+- (void)applicationDidEnterBackground:(NSNotification *)notificaiton {
+    self.canRenderAsset = NO;
+
+    @synchronized (self) {
+        [self flushAndStopReading];
+    }
+}
+
+- (void)applicationWillEnterForeground:(NSNotification *)notification {
+    self.canRenderAsset = YES;
+}
+
 - (void)dealloc {
     @synchronized (self) {
-        [self flushSync];
+        if (self.assetReader.status == AVAssetReaderStatusReading) {
+            [self.assetReader cancelReading];
+        }
+
+        AVSampleBufferDisplayLayer *displayLayer = [self displayLayer];
+
+        [displayLayer stopRequestingMediaData];
     }
+
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIApplicationDidEnterBackgroundNotification
+                                                  object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIApplicationWillEnterForegroundNotification
+                                                  object:nil];
 }
 
 @end
