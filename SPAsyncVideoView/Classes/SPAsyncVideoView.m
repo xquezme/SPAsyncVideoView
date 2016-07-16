@@ -196,7 +196,8 @@
 
 - (void)setupWithAVURLAsset:(AVURLAsset *)asset outputSettings:(NSDictionary *)outputSettings {
     NSError *error = nil;
-    AVAssetReader *assetReader = [[AVAssetReader alloc] initWithAsset:asset
+
+    AVAssetReader *assetReader = [[AVAssetReader alloc] initWithAsset:(AVAsset *)asset
                                                                 error:&error];
 
     if (error != nil) {
