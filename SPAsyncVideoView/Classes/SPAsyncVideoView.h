@@ -30,6 +30,12 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)asyncVideoView:(SPAsyncVideoView *)asyncVideoView didOccurError:(NSError *)error;
 - (void)asyncVideoViewDidPlayToEnd:(SPAsyncVideoView *)asyncVideoView;
 
+- (void)asyncVideoViewWillRenderFirstFrame:(SPAsyncVideoView *)asyncVideoView;
+- (void)asyncVideoViewDidRenderFirstFrame:(SPAsyncVideoView *)asyncVideoView;
+
+- (void)asyncVideoViewWillFlush:(SPAsyncVideoView *)asyncVideoView;
+- (void)asyncVideoViewDidFlush:(SPAsyncVideoView *)asyncVideoView;
+
 @end
 
 IB_DESIGNABLE
@@ -40,6 +46,7 @@ IB_DESIGNABLE
 @property (nonatomic, assign) SPAsyncVideoViewVideoGravity videoGravity;
 @property (nonatomic, assign) SPAsyncVideoViewActionAtItemEnd actionAtItemEnd;
 @property (nonatomic, assign) IBInspectable BOOL autoPlay;
+@property (nonatomic, assign) IBInspectable BOOL restartPlaybackOnEnteringForeground;
 
 - (void)playVideo;
 - (void)stopVideo;

@@ -116,10 +116,18 @@
 #pragma mark - Private API
 
 - (void)flush {
+    if ([self.delegate respondsToSelector:@selector(asyncVideoViewWillFlush:)]) {
+        [self.delegate asyncVideoViewWillFlush:self];
+    }
+
     AVSampleBufferDisplayLayer *displayLayer = [self displayLayer];
 
     [displayLayer stopRequestingMediaData];
     [displayLayer flushAndRemoveImage];
+
+    if ([self.delegate respondsToSelector:@selector(asyncVideoViewDidFlush:)]) {
+        [self.delegate asyncVideoViewDidFlush:self];
+    }
 }
 
 - (void)flushAndStopReading {
@@ -138,6 +146,7 @@
     self.backgroundColor = [UIColor blackColor];
     self.autoPlay = YES;
     self.canRenderAsset = [UIApplication sharedApplication].applicationState != UIApplicationStateBackground;
+    self.restartPlaybackOnEnteringForeground = YES;
 
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(applicationDidEnterBackground:)
@@ -257,6 +266,7 @@
 
     __weak typeof (self) weakSelf = self;
 
+    __block BOOL isFirstFrame = YES;
     [displayLayer requestMediaDataWhenReadyOnQueue:self.workingQueue usingBlock:^{
         __strong typeof (weakSelf) strongSelf = weakSelf;
 
@@ -275,8 +285,19 @@
 
             CMSampleBufferRef sampleBuffer = [outVideo copyNextSampleBuffer];
             if (sampleBuffer != NULL) {
+                if (isFirstFrame && [strongSelf.delegate respondsToSelector:@selector(asyncVideoViewWillRenderFirstFrame:)]) {
+                    [strongSelf.delegate asyncVideoViewWillRenderFirstFrame:strongSelf];
+                }
+
                 [displayLayer enqueueSampleBuffer:sampleBuffer];
                 CFRelease(sampleBuffer);
+
+                if (isFirstFrame && [strongSelf.delegate respondsToSelector:@selector(asyncVideoViewDidRenderFirstFrame:)]) {
+                    [strongSelf.delegate asyncVideoViewDidRenderFirstFrame:strongSelf];
+                }
+
+                isFirstFrame = NO;
+                
                 return;
             }
 
@@ -323,6 +344,17 @@
 
 - (void)applicationWillEnterForeground:(NSNotification *)notification {
     self.canRenderAsset = YES;
+
+    if (self.restartPlaybackOnEnteringForeground) {
+        SPAsyncVideoAsset *asset = self.asset;
+        __weak typeof (self) weakSelf = self;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            weakSelf.asset = nil;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                weakSelf.asset = asset;
+            });
+        });
+    }
 }
 
 - (void)dealloc {
