@@ -139,6 +139,17 @@
     [self flush];
 }
 
+- (void)forceRestart {
+    SPAsyncVideoAsset *asset = self.asset;
+    __weak typeof (self) weakSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        weakSelf.asset = nil;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            weakSelf.asset = asset;
+        });
+    });
+}
+
 - (void)commonInit {
     self.workingQueue = dispatch_queue_create("com.com.SPAsyncVideoViewQueue", NULL);
     self.actionAtItemEnd = SPAsyncVideoViewActionAtItemEndRepeat;
@@ -301,24 +312,32 @@
                 return;
             }
 
-            if ([weakSelf.delegate respondsToSelector:@selector(asyncVideoViewDidPlayToEnd:)]) {
-                [weakSelf.delegate asyncVideoViewDidPlayToEnd:weakSelf];
+            if ([strongSelf.delegate respondsToSelector:@selector(asyncVideoViewDidPlayToEnd:)]) {
+                [strongSelf.delegate asyncVideoViewDidPlayToEnd:strongSelf];
             }
 
             switch (strongSelf.actionAtItemEnd) {
                 case SPAsyncVideoViewActionAtItemEndNone: {
-                    [weakSelf flush];
-                    weakSelf.assetReader = nil;
+                    [strongSelf flush];
+                    strongSelf.assetReader = nil;
                     break;
                 }
                 case SPAsyncVideoViewActionAtItemEndRepeat: {
-                    [displayLayer flush];
-                    [strongSelf setCurrentControlTimebaseWithTime:CMTimeMake(0., 1.)];
-                    NSValue *beginingTimeRangeValue = [NSValue valueWithCMTimeRange:outVideo.track.timeRange];
-                    [outVideo resetForReadingTimeRanges:@[beginingTimeRangeValue]];
-                    sampleBuffer = [outVideo copyNextSampleBuffer];
-                    [displayLayer enqueueSampleBuffer:sampleBuffer];
-                    CFRelease(sampleBuffer);
+                    @synchronized (outVideo.track) {
+                        CMTimeRange timeRange = outVideo.track.timeRange;
+
+                        if (!CMTimeRangeEqual(timeRange, kCMTimeRangeInvalid)) {
+                            [displayLayer flush];
+                            [strongSelf setCurrentControlTimebaseWithTime:CMTimeMake(0., 1.)];
+                            NSValue *beginingTimeRangeValue = [NSValue valueWithCMTimeRange:outVideo.track.timeRange];
+                            [outVideo resetForReadingTimeRanges:@[beginingTimeRangeValue]];
+                            sampleBuffer = [outVideo copyNextSampleBuffer];
+                            [displayLayer enqueueSampleBuffer:sampleBuffer];
+                            CFRelease(sampleBuffer);
+                        } else {
+                            [strongSelf forceRestart];
+                        }
+                    }
                     break;
                 }
                 default:
@@ -346,14 +365,7 @@
     self.canRenderAsset = YES;
 
     if (self.restartPlaybackOnEnteringForeground) {
-        SPAsyncVideoAsset *asset = self.asset;
-        __weak typeof (self) weakSelf = self;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            weakSelf.asset = nil;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                weakSelf.asset = asset;
-            });
-        });
+        [self forceRestart];
     }
 }
 
