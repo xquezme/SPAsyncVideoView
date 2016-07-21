@@ -15,8 +15,8 @@
 @interface SPAsyncVideoView ()
 
 @property (nonatomic, strong) dispatch_queue_t workingQueue;
-@property (nonatomic, strong) AVAssetReader *assetReader;
-@property (nonatomic, assign) BOOL canRenderAsset;
+@property (atomic, strong) AVAssetReader *assetReader;
+@property (atomic, assign) BOOL canRenderAsset;
 
 @end
 
@@ -39,29 +39,26 @@
 }
 
 - (void)setAsset:(nullable SPAsyncVideoAsset *)asset {
-    if ([_asset isEqual:asset]) {
-        return;
-    }
-
-    if (asset == nil) {
-        _asset = nil;
-        [self stopVideo];
-        return;
-    }
-
-    if (_asset != nil) {
-        @synchronized (self) {
-            [self flushAndStopReading];
+    @synchronized (self) {
+        if ([_asset isEqual:asset]) {
+            return;
         }
 
-        [self.layer setNeedsDisplay];
-        [self.layer displayIfNeeded];
-    }
+        if (asset == nil) {
+            _asset = nil;
+            [self stopVideo];
+            return;
+        }
 
-    _asset = asset;
-
-    if (self.autoPlay) {
-        [self playVideo];
+        if (_asset != nil) {
+            [self flushAndStopReading];
+        }
+        
+        _asset = asset;
+        
+        if (self.autoPlay) {
+            [self playVideo];
+        }
     }
 }
 

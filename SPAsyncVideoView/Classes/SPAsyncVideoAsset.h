@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SPAsyncVideoAsset : NSObject
 
 @property (nullable, nonatomic, strong) NSURL *url;
-@property (nullable, nonatomic, strong) AVURLAsset *asset;
+@property (nullable, atomic, strong) AVURLAsset *asset;
 @property (nonatomic, strong) NSDictionary *outputSettings;
 
 + (NSDictionary *)defaultOutputSettings;

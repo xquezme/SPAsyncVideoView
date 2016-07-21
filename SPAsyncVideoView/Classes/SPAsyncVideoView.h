@@ -42,7 +42,7 @@ IB_DESIGNABLE
 @interface SPAsyncVideoView : UIView
 
 @property (nonatomic, weak) id<SPAsyncVideoViewDelegate> delegate;
-@property (nullable, nonatomic, strong) SPAsyncVideoAsset *asset;
+@property (nullable, atomic, strong) SPAsyncVideoAsset *asset;
 @property (nonatomic, assign) SPAsyncVideoViewVideoGravity videoGravity;
 @property (nonatomic, assign) SPAsyncVideoViewActionAtItemEnd actionAtItemEnd;
 @property (nonatomic, assign) IBInspectable BOOL autoPlay;
