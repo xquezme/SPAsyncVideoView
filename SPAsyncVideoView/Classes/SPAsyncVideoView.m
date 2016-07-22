@@ -14,7 +14,7 @@
 
 @interface SPAsyncVideoView ()
 
-@property (nonatomic, strong) dispatch_queue_t workingQueue;
+@property (atomic, strong) dispatch_queue_t workingQueue;
 @property (atomic, strong) AVAssetReader *assetReader;
 @property (atomic, assign) BOOL canRenderAsset;
 
@@ -39,26 +39,26 @@
 }
 
 - (void)setAsset:(nullable SPAsyncVideoAsset *)asset {
-    @synchronized (self) {
-        if ([_asset isEqual:asset]) {
-            return;
-        }
+    NSAssert([NSThread mainThread] == [NSThread mainThread], @"Thread checker");
 
-        if (asset == nil) {
-            _asset = nil;
-            [self stopVideo];
-            return;
-        }
+    if ([_asset isEqual:asset]) {
+        return;
+    }
 
-        if (_asset != nil) {
-            [self flushAndStopReading];
-        }
-        
-        _asset = asset;
-        
-        if (self.autoPlay) {
-            [self playVideo];
-        }
+    if (asset == nil) {
+        _asset = nil;
+        [self stopVideo];
+        return;
+    }
+
+    if (_asset != nil) {
+        [self flushAndStopReading];
+    }
+
+    _asset = asset;
+
+    if (self.autoPlay) {
+        [self playVideo];
     }
 }
 
@@ -91,10 +91,9 @@
 
     __weak typeof (self) weakSelf = self;
 
+    SPAsyncVideoAsset *asset = self.asset;
     dispatch_async(self.workingQueue, ^{
-        @synchronized (weakSelf) {
-            [weakSelf setupWithAsset:weakSelf.asset];
-        }
+        [weakSelf setupWithAsset:asset];
     });
 }
 
@@ -102,11 +101,8 @@
     NSAssert([NSThread mainThread] == [NSThread mainThread], @"Thread checker");
 
     __weak typeof (self) weakSelf = self;
-
     dispatch_async(self.workingQueue, ^{
-        @synchronized (weakSelf) {
-            [weakSelf flushAndStopReading];
-        }
+        [weakSelf flushAndStopReading];
     });
 }
 
@@ -171,7 +167,9 @@
 }
 
 - (AVSampleBufferDisplayLayer *)displayLayer {
-    return (AVSampleBufferDisplayLayer *)self.layer;
+    @synchronized (self) {
+        return (AVSampleBufferDisplayLayer *)self.layer;
+    }
 }
 
 - (void)setupWithAsset:(SPAsyncVideoAsset *)asset {
@@ -188,26 +186,24 @@
 
     __weak typeof (self) weakSelf = self;
     [self.asset.asset loadValuesAsynchronouslyForKeys:keys completionHandler:^{
-        @synchronized (weakSelf) {
-            if (weakSelf.workingQueue == NULL) {
-                return;
-            }
-
-            dispatch_async(weakSelf.workingQueue, ^{
-                @synchronized (weakSelf) {
-                    AVURLAsset *currentAVAsset = weakSelf.asset.asset;
-                    NSDictionary *outputSettings = weakSelf.asset.outputSettings;
-
-                    if (currentAVAsset == nil || ![weakSelf.asset isEqual:asset]) {
-                        return;
-                    }
-                    @synchronized (currentAVAsset) {
-                        [weakSelf setupWithAVURLAsset:currentAVAsset
-                                       outputSettings:outputSettings];
-                    }
-                }
-            });
+        if (weakSelf.workingQueue == NULL) {
+            return;
         }
+
+        dispatch_async(weakSelf.workingQueue, ^{
+            @synchronized (weakSelf) {
+                SPAsyncVideoAsset *currentAsset = weakSelf.asset;
+                AVURLAsset *currentAVAsset = currentAsset.asset;
+                NSDictionary *outputSettings = currentAsset.outputSettings;
+
+                if (currentAVAsset == nil || ![currentAsset isEqual:asset]) {
+                    return;
+                }
+
+                [weakSelf setupWithAVURLAsset:currentAVAsset
+                               outputSettings:outputSettings];
+            }
+        });
     }];
 }
 
@@ -269,77 +265,76 @@
 
     _assetReader = assetReader;
 
-    AVSampleBufferDisplayLayer *displayLayer = [self displayLayer];
     [self setCurrentControlTimebaseWithTime:CMTimeMake(0., 1.)];
 
     __weak typeof (self) weakSelf = self;
 
     __block BOOL isFirstFrame = YES;
-    [displayLayer requestMediaDataWhenReadyOnQueue:self.workingQueue usingBlock:^{
+    [[self displayLayer] requestMediaDataWhenReadyOnQueue:self.workingQueue usingBlock:^{
         __strong typeof (weakSelf) strongSelf = weakSelf;
 
-        @synchronized (strongSelf) {
-            if (!displayLayer.isReadyForMoreMediaData || displayLayer.status == AVQueuedSampleBufferRenderingStatusFailed) {
-                return;
+        AVSampleBufferDisplayLayer *displayLayer = [strongSelf displayLayer];
+
+        if (!displayLayer.isReadyForMoreMediaData || displayLayer.status == AVQueuedSampleBufferRenderingStatusFailed) {
+            return;
+        }
+
+        if (assetReader.status != AVAssetReaderStatusReading) {
+            return;
+        }
+
+        if (!strongSelf.canRenderAsset) {
+            return;
+        }
+
+        CMSampleBufferRef sampleBuffer = [outVideo copyNextSampleBuffer];
+        if (sampleBuffer != NULL) {
+            if (isFirstFrame && [strongSelf.delegate respondsToSelector:@selector(asyncVideoViewWillRenderFirstFrame:)]) {
+                [strongSelf.delegate asyncVideoViewWillRenderFirstFrame:strongSelf];
             }
 
-            if (assetReader.status != AVAssetReaderStatusReading) {
-                return;
+            [displayLayer enqueueSampleBuffer:sampleBuffer];
+            CFRelease(sampleBuffer);
+
+            if (isFirstFrame && [strongSelf.delegate respondsToSelector:@selector(asyncVideoViewDidRenderFirstFrame:)]) {
+                [strongSelf.delegate asyncVideoViewDidRenderFirstFrame:strongSelf];
             }
 
-            if (!strongSelf.canRenderAsset) {
-                return;
+            isFirstFrame = NO;
+
+            return;
+        }
+
+        if ([strongSelf.delegate respondsToSelector:@selector(asyncVideoViewDidPlayToEnd:)]) {
+            [strongSelf.delegate asyncVideoViewDidPlayToEnd:strongSelf];
+        }
+
+        switch (strongSelf.actionAtItemEnd) {
+            case SPAsyncVideoViewActionAtItemEndNone: {
+                [strongSelf flush];
+                strongSelf.assetReader = nil;
+                break;
             }
+            case SPAsyncVideoViewActionAtItemEndRepeat: {
+                @synchronized (outVideo.track) {
+                    CMTimeRange timeRange = outVideo.track.timeRange;
 
-            CMSampleBufferRef sampleBuffer = [outVideo copyNextSampleBuffer];
-            if (sampleBuffer != NULL) {
-                if (isFirstFrame && [strongSelf.delegate respondsToSelector:@selector(asyncVideoViewWillRenderFirstFrame:)]) {
-                    [strongSelf.delegate asyncVideoViewWillRenderFirstFrame:strongSelf];
-                }
-
-                [displayLayer enqueueSampleBuffer:sampleBuffer];
-                CFRelease(sampleBuffer);
-
-                if (isFirstFrame && [strongSelf.delegate respondsToSelector:@selector(asyncVideoViewDidRenderFirstFrame:)]) {
-                    [strongSelf.delegate asyncVideoViewDidRenderFirstFrame:strongSelf];
-                }
-
-                isFirstFrame = NO;
-                
-                return;
-            }
-
-            if ([strongSelf.delegate respondsToSelector:@selector(asyncVideoViewDidPlayToEnd:)]) {
-                [strongSelf.delegate asyncVideoViewDidPlayToEnd:strongSelf];
-            }
-
-            switch (strongSelf.actionAtItemEnd) {
-                case SPAsyncVideoViewActionAtItemEndNone: {
-                    [strongSelf flush];
-                    strongSelf.assetReader = nil;
-                    break;
-                }
-                case SPAsyncVideoViewActionAtItemEndRepeat: {
-                    @synchronized (outVideo.track) {
-                        CMTimeRange timeRange = outVideo.track.timeRange;
-
-                        if (!CMTimeRangeEqual(timeRange, kCMTimeRangeInvalid)) {
-                            [displayLayer flush];
-                            [strongSelf setCurrentControlTimebaseWithTime:CMTimeMake(0., 1.)];
-                            NSValue *beginingTimeRangeValue = [NSValue valueWithCMTimeRange:outVideo.track.timeRange];
-                            [outVideo resetForReadingTimeRanges:@[beginingTimeRangeValue]];
-                            sampleBuffer = [outVideo copyNextSampleBuffer];
-                            [displayLayer enqueueSampleBuffer:sampleBuffer];
-                            CFRelease(sampleBuffer);
-                        } else {
-                            [strongSelf forceRestart];
-                        }
+                    if (!CMTimeRangeEqual(timeRange, kCMTimeRangeInvalid)) {
+                        [displayLayer flush];
+                        [strongSelf setCurrentControlTimebaseWithTime:CMTimeMake(0., 1.)];
+                        NSValue *beginingTimeRangeValue = [NSValue valueWithCMTimeRange:outVideo.track.timeRange];
+                        [outVideo resetForReadingTimeRanges:@[beginingTimeRangeValue]];
+                        sampleBuffer = [outVideo copyNextSampleBuffer];
+                        [displayLayer enqueueSampleBuffer:sampleBuffer];
+                        CFRelease(sampleBuffer);
+                    } else {
+                        [strongSelf forceRestart];
                     }
-                    break;
                 }
-                default:
-                    break;
+                break;
             }
+            default:
+                break;
         }
     }];
 }
@@ -353,9 +348,7 @@
 - (void)applicationDidEnterBackground:(NSNotification *)notificaiton {
     self.canRenderAsset = NO;
 
-    @synchronized (self) {
-        [self flushAndStopReading];
-    }
+    [self flushAndStopReading];
 }
 
 - (void)applicationWillEnterForeground:(NSNotification *)notification {
@@ -367,15 +360,12 @@
 }
 
 - (void)dealloc {
-    @synchronized (self) {
-        if (self.assetReader.status == AVAssetReaderStatusReading) {
-            [self.assetReader cancelReading];
-        }
-
-        AVSampleBufferDisplayLayer *displayLayer = [self displayLayer];
-
-        [displayLayer stopRequestingMediaData];
+    if (self.assetReader.status == AVAssetReaderStatusReading) {
+        [self.assetReader cancelReading];
     }
+
+    AVSampleBufferDisplayLayer *displayLayer = [self displayLayer];
+    [displayLayer stopRequestingMediaData];
 
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:UIApplicationDidEnterBackgroundNotification
