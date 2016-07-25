@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'SPAsyncVideoView'
-  s.version          = '0.2.3'
+  s.version          = '0.3.0'
   s.summary          = 'Smooth asynchronous video view. Perfect for autoplay & loop videos in UITableView/UICollectionView.'
   s.homepage         = 'https://github.com/xquezme/SPAsyncVideoView'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }

@@ -28,12 +28,11 @@
     return self;
 }
 
-- (instancetype)initWithAVAsset:(AVURLAsset *)asset outputSettings:(nullable NSDictionary *)outputSettings {
+- (instancetype)initWithURL:(NSURL *)url outputSettings:(NSDictionary *)outputSettings {
     self = [super init];
 
     if (self) {
-        _asset = asset;
-        _url = asset.URL;
+        _url = url;
         _outputSettings = outputSettings != nil ? outputSettings : [[self class] defaultOutputSettings];
     }
 

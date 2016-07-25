@@ -36,6 +36,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)asyncVideoViewWillFlush:(SPAsyncVideoView *)asyncVideoView;
 - (void)asyncVideoViewDidFlush:(SPAsyncVideoView *)asyncVideoView;
 
+- (void)asyncVideoView:(SPAsyncVideoView *)asyncVideoView didReceiveAssetNaturalSize:(CGSize)assetNaturalSize;
+
 @end
 
 IB_DESIGNABLE
@@ -47,6 +49,7 @@ IB_DESIGNABLE
 @property (nonatomic, assign) SPAsyncVideoViewActionAtItemEnd actionAtItemEnd;
 @property (nonatomic, assign) IBInspectable BOOL autoPlay;
 @property (nonatomic, assign) IBInspectable BOOL restartPlaybackOnEnteringForeground;
+@property (nonatomic, strong, readonly) UIView *overlayView;
 
 - (void)playVideo;
 - (void)stopVideo;
