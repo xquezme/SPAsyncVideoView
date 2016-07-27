@@ -1,6 +1,6 @@
 # SPAsyncVideoView
 
-[![CI Status](http://img.shields.io/travis/Pimenov Sergey/SPAsyncVideoView.svg?style=flat)](https://travis-ci.org/Pimenov Sergey/SPAsyncVideoView)
+[![CI Status](http://img.shields.io/travis/Pimenov Sergey/SPAsyncVideoView.svg?style=flat)](https://travis-ci.org/xquezme/SPAsyncVideoView)
 [![Version](https://img.shields.io/cocoapods/v/SPAsyncVideoView.svg?style=flat)](http://cocoapods.org/pods/SPAsyncVideoView)
 [![License](https://img.shields.io/cocoapods/l/SPAsyncVideoView.svg?style=flat)](http://cocoapods.org/pods/SPAsyncVideoView)
 [![Platform](https://img.shields.io/cocoapods/p/SPAsyncVideoView.svg?style=flat)](http://cocoapods.org/pods/SPAsyncVideoView)
