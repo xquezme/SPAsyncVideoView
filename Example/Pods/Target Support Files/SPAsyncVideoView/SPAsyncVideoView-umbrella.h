@@ -1,5 +1,7 @@
 #import <UIKit/UIKit.h>
 
+#import "SPAGIFMetadata.h"
+#import "SPAsyncGIFConverter.h"
 #import "SPAsyncVideoAsset.h"
 #import "SPAsyncVideoView.h"
 

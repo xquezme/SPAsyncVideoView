@@ -9,14 +9,33 @@
 #import "SPAsyncVideoView.h"
 
 #import "SPAsyncVideoAsset.h"
+#import "SPAsyncGIFConverter.h"
 
 #import <AVFoundation/AVFoundation.h>
+#import <CommonCrypto/CommonDigest.h>
+
+NS_INLINE NSString * cachedFilePathWithGifURL(NSURL *gifURL) {
+    if (gifURL == nil) {
+        return nil;
+    }
+
+    const char *cstr = [gifURL.path UTF8String];
+    unsigned char result[16];
+    CC_MD5(cstr, (CC_LONG)strlen(cstr), result);
+
+    return [NSString stringWithFormat:
+            @"%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X.mp4",
+            result[0], result[1], result[2], result[3],
+            result[4], result[5], result[6], result[7],
+            result[8], result[9], result[10], result[11],
+            result[12], result[13], result[14], result[15]];
+}
 
 @interface SPAsyncVideoView ()
 
 @property (atomic, strong) dispatch_queue_t workingQueue;
 @property (atomic, strong) AVAssetReader *assetReader;
-@property (nonatomic, strong) AVAsset *nativeAsset;
+@property (nonatomic, strong) AVURLAsset *nativeAsset;
 @property (atomic, assign) BOOL canRenderAsset;
 @property (nonatomic, assign) CGSize assetNaturalSize;
 
@@ -104,7 +123,7 @@
 
     __weak typeof (self) weakSelf = self;
     dispatch_async(self.workingQueue, ^{
-        __strong typeof (self) strongSelf = self;
+        __strong typeof (self) strongSelf = weakSelf;
         [strongSelf setupWithAsset:strongSelf.asset];
     });
 }
@@ -219,9 +238,43 @@
 }
 
 - (void)setupWithAsset:(SPAsyncVideoAsset *)asset {
-    NSURL *url = asset.url;
+    if (asset == nil) {
+        return;
+    }
 
-    if (asset == nil || url == nil) {
+    NSURL *url = asset.finalURL;
+
+    if (asset.type == SPAsyncVideoAssetTypeGIF && url == nil) {
+        NSURL *outputURL = [self cachedMP4FileURLWithGifURL:asset.originalURL];
+
+        @synchronized ([NSFileManager class]) {
+            if ([[NSFileManager defaultManager] fileExistsAtPath:outputURL.path]) {
+                asset.finalURL = outputURL;
+                url = outputURL;
+            } else {
+                SPAsyncGIFConverter *converter = [[SPAsyncGIFConverter alloc] initWithGifURL:asset.originalURL];
+
+                __weak typeof (self) weakSelf = self;
+                [converter startWithOutputURL:outputURL completion:^(NSURL * _Nullable url,
+                                                                     NSError * _Nullable error) {
+                    if (weakSelf.workingQueue == NULL) {
+                        return;
+                    }
+
+                    dispatch_async(weakSelf.workingQueue, ^{
+                        asset.finalURL = outputURL;
+                        if ([weakSelf.asset isEqual:asset]) {
+                            [weakSelf setupWithAsset:asset];
+                        }
+                    });
+                }];
+
+                return;
+            }
+        }
+    }
+
+    if (url == nil) {
         return;
     }
 
@@ -264,7 +317,7 @@
 
             NSDictionary *outputSettings = currentAsset.outputSettings;
 
-            if (currentAVAsset == nil || ![currentAsset.url isEqual:url]) {
+            if (currentAVAsset == nil || ![currentAsset.finalURL isEqual:url]) {
                 return;
             }
 
@@ -436,6 +489,15 @@
     if (self.restartPlaybackOnEnteringForeground) {
         [self forceRestart];
     }
+}
+
+- (NSURL *)cachedMP4FileURLWithGifURL:(NSURL *)url {
+    NSString *outputPath = NSTemporaryDirectory();
+
+    outputPath = [outputPath stringByAppendingString:@"SPAsyncVideoView/"];
+    outputPath = [outputPath stringByAppendingString:cachedFilePathWithGifURL(url)];
+
+    return [NSURL fileURLWithPath:outputPath];
 }
 
 - (void)dealloc {

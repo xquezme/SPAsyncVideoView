@@ -12,28 +12,28 @@
 
 @implementation SPAsyncVideoAsset
 
-+ (NSDictionary *)defaultOutputSettings {
-    return @{(id)kCVPixelBufferPixelFormatTypeKey: @(kCVPixelFormatType_420YpCbCr8BiPlanarFullRange),
-             (id)kCVPixelBufferPixelFormatTypeKey: @(kCVPixelFormatType_32BGRA)};
-}
-
 - (instancetype)initWithURL:(NSURL *)url {
-    self = [super init];
-
-    if (self) {
-        _url = url;
-        _outputSettings = [[self class] defaultOutputSettings];
-    }
-
-    return self;
+    return [self initWithURL:url type:SPAsyncVideoAssetTypeVideo];
 }
 
-- (instancetype)initWithURL:(NSURL *)url outputSettings:(NSDictionary *)outputSettings {
+- (instancetype)initWithURL:(NSURL *)url type:(SPAsyncVideoAssetType)type {
     self = [super init];
 
     if (self) {
-        _url = url;
-        _outputSettings = outputSettings != nil ? outputSettings : [[self class] defaultOutputSettings];
+        _originalURL = url;
+        _type = type;
+        
+        switch (type) {
+            case SPAsyncVideoAssetTypeGIF:
+                _outputSettings = @{(id)kCVPixelBufferPixelFormatTypeKey: @(kCVPixelFormatType_32ARGB)};
+                break;
+            case SPAsyncVideoAssetTypeVideo:
+                _outputSettings = @{(id)kCVPixelBufferPixelFormatTypeKey: @(kCVPixelFormatType_420YpCbCr8BiPlanarFullRange)};
+                _finalURL = url;
+                break;
+            default:
+                break;
+        }
     }
 
     return self;
@@ -44,11 +44,11 @@
         return NO;
     }
 
-    return [self.url isEqual:[object url]];
+    return [self.originalURL isEqual:[object originalURL]];
 }
 
 - (NSUInteger)hash {
-    return self.url.hash;
+    return self.originalURL.hash;
 }
 
 @end
