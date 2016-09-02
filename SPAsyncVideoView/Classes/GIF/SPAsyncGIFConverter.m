@@ -31,7 +31,7 @@ NS_INLINE SPAGIFMetadata *gifMetaDataFromData(NSData *data) {
     NSTimeInterval totalTime = 0.0;
     int64_t currentFrameNumber = 0;
 
-    while (YES) {
+    while (currentFrameNumber < metaData.framesCount) {
         CFDictionaryRef properties = CGImageSourceCopyPropertiesAtIndex(source,
                                                                         (size_t)currentFrameNumber,
                                                                         NULL);
@@ -150,6 +150,16 @@ NS_INLINE CVPixelBufferRef pixelBufferFromCGImage(CGImageRef image,
 
     @synchronized ([NSFileManager class]) {
         if ([[NSFileManager defaultManager] fileExistsAtPath:mp4URL.path]) {
+            self.completion(mp4URL, nil);
+            return;
+        }
+
+        if (gifURL == nil) {
+            self.completion(nil, nil);
+            return;
+        }
+
+        if (![[NSFileManager defaultManager] fileExistsAtPath:gifURL.path]) {
             self.completion(nil, nil);
             return;
         }
@@ -246,7 +256,6 @@ NS_INLINE CVPixelBufferRef pixelBufferFromCGImage(CGImageRef image,
                                                                    adaptor.sourcePixelBufferAttributes);
                 if (pxBuffer != NULL) {
                     NSNumber *delayTime = CFDictionaryGetValue(gifProperties, kCGImagePropertyGIFDelayTime);
-                    currentTime += delayTime.floatValue;
                     CMTime time = CMTimeMakeWithSeconds(currentTime, metaData.fps);
 
                     if (![adaptor appendPixelBuffer:pxBuffer withPresentationTime:time]) {
@@ -257,6 +266,8 @@ NS_INLINE CVPixelBufferRef pixelBufferFromCGImage(CGImageRef image,
                         self.completion(nil, videoWriter.error);
                         return;
                     }
+
+                    currentTime += delayTime.floatValue;
 
                     CVBufferRelease(pxBuffer);
                 }

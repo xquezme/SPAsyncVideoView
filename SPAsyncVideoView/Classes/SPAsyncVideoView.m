@@ -457,9 +457,6 @@ NS_INLINE NSString * cachedFilePathWithGifURL(NSURL *gifURL) {
                     [strongSelf setCurrentControlTimebaseWithTime:CMTimeMake(0., 1.)];
                     NSValue *beginingTimeRangeValue = [NSValue valueWithCMTimeRange:outVideo.track.timeRange];
                     [outVideo resetForReadingTimeRanges:@[beginingTimeRangeValue]];
-                    sampleBuffer = [outVideo copyNextSampleBuffer];
-                    [displayLayer enqueueSampleBuffer:sampleBuffer];
-                    CFRelease(sampleBuffer);
                 } else {
                     [strongSelf forceRestart];
                 }
