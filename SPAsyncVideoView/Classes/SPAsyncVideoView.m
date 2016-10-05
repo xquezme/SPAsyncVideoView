@@ -423,7 +423,9 @@ NS_INLINE NSString * cachedFilePathWithGifURL(NSURL *gifURL) {
                 [strongSelf.delegate asyncVideoViewWillRenderFirstFrame:strongSelf];
             }
 
-            [displayLayer enqueueSampleBuffer:sampleBuffer];
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                [displayLayer enqueueSampleBuffer:sampleBuffer];
+            });
             CFRelease(sampleBuffer);
 
             if (isFirstFrame && [strongSelf.delegate respondsToSelector:@selector(asyncVideoViewDidRenderFirstFrame:)]) {

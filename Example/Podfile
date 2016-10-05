@@ -7,6 +7,6 @@ target 'SPAsyncVideoView_Example' do
   target 'SPAsyncVideoView_Tests' do
     inherit! :search_paths
 
-    pod 'FBSnapshotTestCase'
+    pod 'FBSnapshotTestCase', '2.1.3'
   end
 end
