@@ -243,11 +243,13 @@ NS_INLINE CVPixelBufferRef pixelBufferFromCGImage(CGImageRef image,
 
         NSDictionary *options = @{(NSString *)kCGImageSourceTypeIdentifierHint:(id)kUTTypeGIF};
         CGImageRef imgRef = CGImageSourceCreateImageAtIndex(source,
-                                                            currentFrameNumber,
+                                                            (size_t)currentFrameNumber,
                                                             (__bridge CFDictionaryRef)options);
 
         if (imgRef != NULL) {
-            CFDictionaryRef properties = CGImageSourceCopyPropertiesAtIndex(source, currentFrameNumber, NULL);
+            CFDictionaryRef properties = CGImageSourceCopyPropertiesAtIndex(source,
+                                                                            (size_t)currentFrameNumber,
+                                                                            NULL);
             CFDictionaryRef gifProperties = CFDictionaryGetValue(properties, kCGImagePropertyGIFDictionary);
 
             if (gifProperties != NULL) {

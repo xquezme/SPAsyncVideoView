@@ -56,6 +56,8 @@ NS_INLINE NSString * cachedFilePathWithGifURL(NSURL *gifURL) {
 }
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
+    
     [self commonInit];
 }
 
