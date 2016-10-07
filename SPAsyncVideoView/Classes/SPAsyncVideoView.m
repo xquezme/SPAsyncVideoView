@@ -70,6 +70,10 @@ NS_INLINE NSString * cachedFilePathWithGifURL(NSURL *gifURL) {
     dispatch_async(self.workingQueue, ^{
         __strong typeof (weakSelf) strongSelf = weakSelf;
 
+        if (strongSelf == nil) {
+            return;
+        }
+
         if ([strongSelf->_asset isEqual:asset]) {
             return;
         }
@@ -126,6 +130,11 @@ NS_INLINE NSString * cachedFilePathWithGifURL(NSURL *gifURL) {
     __weak typeof (self) weakSelf = self;
     dispatch_async(self.workingQueue, ^{
         __strong typeof (self) strongSelf = weakSelf;
+
+        if (strongSelf == nil) {
+            return;
+        }
+
         [strongSelf setupWithAsset:strongSelf.asset];
     });
 }
@@ -293,6 +302,10 @@ NS_INLINE NSString * cachedFilePathWithGifURL(NSURL *gifURL) {
         dispatch_async(weakSelf.workingQueue, ^{
             __strong typeof (self) strongSelf = weakSelf;
 
+            if (strongSelf == nil) {
+                return;
+            }
+
             SPAsyncVideoAsset *currentAsset = strongSelf.asset;
             AVURLAsset *currentAVAsset = strongSelf.nativeAsset;
             NSError *error = nil;
@@ -404,6 +417,10 @@ NS_INLINE NSString * cachedFilePathWithGifURL(NSURL *gifURL) {
     __block BOOL isFirstFrame = YES;
     [[self displayLayer] requestMediaDataWhenReadyOnQueue:self.workingQueue usingBlock:^{
         __strong typeof (weakSelf) strongSelf = weakSelf;
+
+        if (strongSelf == nil) {
+            return;
+        }
 
         AVSampleBufferDisplayLayer *displayLayer = [strongSelf displayLayer];
 
