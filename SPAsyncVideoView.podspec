@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'SPAsyncVideoView'
-  s.version          = '0.4.3'
+  s.version          = '0.4.4'
   s.summary          = 'Smooth asynchronous video view. Perfect for autoplay & loop videos/GIFs in UITableView/UICollectionView.'
   s.description      = <<-DESC
                         Smooth asynchronous video view. Perfect for autoplay & loop videos/GIFs in UITableView/UICollectionView..

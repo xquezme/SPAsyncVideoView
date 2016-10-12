@@ -5,7 +5,7 @@ PODS:
   - FBSnapshotTestCase/SwiftSupport (2.1.3):
     - FBSnapshotTestCase/Core
   - JPFPSStatus (0.1)
-  - SPAsyncVideoView (0.4.3)
+  - SPAsyncVideoView (0.4.4)
 
 DEPENDENCIES:
   - FBSnapshotTestCase (= 2.1.3)
@@ -19,7 +19,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   FBSnapshotTestCase: 4607968e0dfa1e2772ec0d0098354f8b870c5753
   JPFPSStatus: 4467a17488382e4c1700bd9d18c92ae581fd6305
-  SPAsyncVideoView: fd7442c7d872474b73003003b8e2e88f1b11ed93
+  SPAsyncVideoView: d7f7e17fe91f7f74c28f8404b95767af56861c52
 
 PODFILE CHECKSUM: 367eaf7d22dce562c942f488ef84f20352b4b856
 

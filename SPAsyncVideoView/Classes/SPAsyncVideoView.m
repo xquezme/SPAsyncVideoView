@@ -245,7 +245,9 @@ NS_INLINE NSString * cachedFilePathWithGifURL(NSURL *gifURL) {
 }
 
 - (AVSampleBufferDisplayLayer *)displayLayer {
-    return (AVSampleBufferDisplayLayer *)self.layer;
+    @synchronized (self.layer) {
+        return (AVSampleBufferDisplayLayer *)self.layer;
+    }
 }
 
 - (void)setupWithAsset:(SPAsyncVideoAsset *)asset {
@@ -422,69 +424,72 @@ NS_INLINE NSString * cachedFilePathWithGifURL(NSURL *gifURL) {
             return;
         }
 
-        AVSampleBufferDisplayLayer *displayLayer = [strongSelf displayLayer];
+        @synchronized (strongSelf) {
+            AVSampleBufferDisplayLayer *displayLayer = [strongSelf displayLayer];
 
-        if (!displayLayer.isReadyForMoreMediaData || displayLayer.status == AVQueuedSampleBufferRenderingStatusFailed) {
-            return;
-        }
-
-        if (assetReader.status != AVAssetReaderStatusReading) {
-            return;
-        }
-
-        if (!strongSelf.canRenderAsset) {
-            return;
-        }
-
-        CMSampleBufferRef sampleBuffer = [outVideo copyNextSampleBuffer];
-        if (sampleBuffer != NULL) {
-            if (isFirstFrame && [strongSelf.delegate respondsToSelector:@selector(asyncVideoViewWillRenderFirstFrame:)]) {
-                [strongSelf.delegate asyncVideoViewWillRenderFirstFrame:strongSelf];
+            if (!displayLayer.isReadyForMoreMediaData || displayLayer.status == AVQueuedSampleBufferRenderingStatusFailed) {
+                return;
             }
 
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                [displayLayer enqueueSampleBuffer:sampleBuffer];
-            });
-            CFRelease(sampleBuffer);
-
-            if (isFirstFrame && [strongSelf.delegate respondsToSelector:@selector(asyncVideoViewDidRenderFirstFrame:)]) {
-                [strongSelf.delegate asyncVideoViewDidRenderFirstFrame:strongSelf];
+            if (assetReader.status != AVAssetReaderStatusReading) {
+                return;
             }
 
-            if (isFirstFrame) {
-                [strongSelf setOverlayHidden:YES];
+            if (!strongSelf.canRenderAsset) {
+                return;
             }
 
-            isFirstFrame = NO;
-
-            return;
-        }
-
-        if ([strongSelf.delegate respondsToSelector:@selector(asyncVideoViewDidPlayToEnd:)]) {
-            [strongSelf.delegate asyncVideoViewDidPlayToEnd:strongSelf];
-        }
-
-        switch (strongSelf.actionAtItemEnd) {
-            case SPAsyncVideoViewActionAtItemEndNone: {
-                [strongSelf flush];
-                strongSelf.assetReader = nil;
-                break;
-            }
-            case SPAsyncVideoViewActionAtItemEndRepeat: {
-                CMTimeRange timeRange = outVideo.track.timeRange;
-
-                if (!CMTimeRangeEqual(timeRange, kCMTimeRangeInvalid)) {
-                    [displayLayer flush];
-                    [strongSelf setCurrentControlTimebaseWithTime:CMTimeMake(0., 1.)];
-                    NSValue *beginingTimeRangeValue = [NSValue valueWithCMTimeRange:outVideo.track.timeRange];
-                    [outVideo resetForReadingTimeRanges:@[beginingTimeRangeValue]];
-                } else {
-                    [strongSelf forceRestart];
+            CMSampleBufferRef sampleBuffer = [outVideo copyNextSampleBuffer];
+            if (sampleBuffer != NULL) {
+                if (isFirstFrame && [strongSelf.delegate respondsToSelector:@selector(asyncVideoViewWillRenderFirstFrame:)]) {
+                    [strongSelf.delegate asyncVideoViewWillRenderFirstFrame:strongSelf];
                 }
-                break;
+
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    [displayLayer enqueueSampleBuffer:sampleBuffer];
+                });
+
+                CFRelease(sampleBuffer);
+
+                if (isFirstFrame && [strongSelf.delegate respondsToSelector:@selector(asyncVideoViewDidRenderFirstFrame:)]) {
+                    [strongSelf.delegate asyncVideoViewDidRenderFirstFrame:strongSelf];
+                }
+
+                if (isFirstFrame) {
+                    [strongSelf setOverlayHidden:YES];
+                }
+
+                isFirstFrame = NO;
+
+                return;
             }
-            default:
-                break;
+
+            if ([strongSelf.delegate respondsToSelector:@selector(asyncVideoViewDidPlayToEnd:)]) {
+                [strongSelf.delegate asyncVideoViewDidPlayToEnd:strongSelf];
+            }
+
+            switch (strongSelf.actionAtItemEnd) {
+                case SPAsyncVideoViewActionAtItemEndNone: {
+                    [strongSelf flush];
+                    strongSelf.assetReader = nil;
+                    break;
+                }
+                case SPAsyncVideoViewActionAtItemEndRepeat: {
+                    CMTimeRange timeRange = outVideo.track.timeRange;
+
+                    if (!CMTimeRangeEqual(timeRange, kCMTimeRangeInvalid)) {
+                        [displayLayer flush];
+                        [strongSelf setCurrentControlTimebaseWithTime:CMTimeMake(0., 1.)];
+                        NSValue *beginingTimeRangeValue = [NSValue valueWithCMTimeRange:outVideo.track.timeRange];
+                        [outVideo resetForReadingTimeRanges:@[beginingTimeRangeValue]];
+                    } else {
+                        [strongSelf forceRestart];
+                    }
+                    break;
+                }
+                default:
+                    break;
+            }
         }
     }];
 }
