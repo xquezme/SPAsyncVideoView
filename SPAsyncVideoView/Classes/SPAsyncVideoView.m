@@ -524,15 +524,8 @@ NS_INLINE NSString * cachedFilePathWithGifURL(NSURL *gifURL) {
 }
 
 - (void)dealloc {
-    @synchronized (self) {
-        [self.nativeAsset cancelLoading];
-
-        if (self.assetReader.status == AVAssetReaderStatusReading) {
-            [self.assetReader cancelReading];
-        }
-
-        [[self displayLayer] stopRequestingMediaData];
-    }
+    [[self displayLayer] stopRequestingMediaData];
+    [[self displayLayer] flushAndRemoveImage];
 
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:UIApplicationDidEnterBackgroundNotification
