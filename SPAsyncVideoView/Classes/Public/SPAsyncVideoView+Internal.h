@@ -1,15 +1,14 @@
 //
-//  SPAsyncVideoView.h
+//  SPAsyncVideoView+Internal.h
 //  Pods
 //
-//  Created by Sergey Pimenov on 14/07/16.
+//  Created by Sergey Pimenov on 26/10/2016.
 //
 //
-
 #import <UIKit/UIKit.h>
-#import "SPAsyncVideoAsset.h"
 
 @class SPAsyncVideoView;
+@class SPAsyncVideoAsset;
 
 typedef NS_ENUM(NSInteger, SPAsyncVideoViewActionAtItemEnd) {
     SPAsyncVideoViewActionAtItemEndNone,
