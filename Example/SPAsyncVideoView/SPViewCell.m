@@ -8,8 +8,7 @@
 
 #import "SPViewCell.h"
 
-#import "SPAsyncVideoView.h"
-#import "SPAsyncVideoAsset.h"
+@import SPAsyncVideoView;
 
 @implementation SPViewCell
 
@@ -20,6 +19,7 @@
 }
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
     self.videoView.actionAtItemEnd = SPAsyncVideoViewActionAtItemEndRepeat;
 }
 

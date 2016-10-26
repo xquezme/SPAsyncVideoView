@@ -8,8 +8,7 @@
 
 #import "SPViewController.h"
 
-#import <SPAsyncVideoView/SPAsyncVideoView.h>
-#import <SPAsyncVideoView/SPAsyncGifConverter.h>
+@import SPAsyncVideoView;
 
 #import "SPViewCell.h"
 

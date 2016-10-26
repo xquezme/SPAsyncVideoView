@@ -1,8 +1,9 @@
+#ifdef __OBJC__
 #import <UIKit/UIKit.h>
+#endif
 
-#import "SPAGIFMetadata.h"
-#import "SPAsyncGIFConverter.h"
 #import "SPAsyncVideoAsset.h"
+#import "SPAsyncVideoView+Internal.h"
 #import "SPAsyncVideoView.h"
 
 FOUNDATION_EXPORT double SPAsyncVideoViewVersionNumber;

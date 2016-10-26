@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'SPAsyncVideoView'
-  s.version          = '0.4.5'
+  s.version          = '0.5.0'
   s.summary          = 'Smooth asynchronous video view. Perfect for autoplay & loop videos/GIFs in UITableView/UICollectionView.'
   s.description      = <<-DESC
                         Smooth asynchronous video view. Perfect for autoplay & loop videos/GIFs in UITableView/UICollectionView..
@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.source           = { :git => 'https://github.com/xquezme/SPAsyncVideoView.git', :tag => s.version.to_s }
   s.ios.deployment_target = '8.0'
   s.source_files = 'SPAsyncVideoView/Classes/**/*'
-  s.public_header_files = 'SPAsyncVideoView/Classes/**/*.h'
-  s.frameworks = 'UIKit', 'Foundation', 'AVFoundation', 'ImageIO', 'MobileCoreServices'
+  s.public_header_files = 'SPAsyncVideoView/Classes/Public/**/*.h'
+  s.frameworks = 'UIKit', 'Foundation', 'AVFoundation', 'ImageIO', 'MobileCoreServices', 'CoreMedia'
   s.requires_arc = true
 end

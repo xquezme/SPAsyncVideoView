@@ -1,6 +1,6 @@
 {
   "name": "SPAsyncVideoView",
-  "version": "0.4.5",
+  "version": "0.5.0",
   "summary": "Smooth asynchronous video view. Perfect for autoplay & loop videos/GIFs in UITableView/UICollectionView.",
   "description": "Smooth asynchronous video view. Perfect for autoplay & loop videos/GIFs in UITableView/UICollectionView..\nCan play GIFs/videos with low memory footprint and on 60fps.",
   "homepage": "https://github.com/xquezme/SPAsyncVideoView",
@@ -13,19 +13,20 @@
   },
   "source": {
     "git": "https://github.com/xquezme/SPAsyncVideoView.git",
-    "tag": "0.4.5"
+    "tag": "0.5.0"
   },
   "platforms": {
     "ios": "8.0"
   },
   "source_files": "SPAsyncVideoView/Classes/**/*",
-  "public_header_files": "SPAsyncVideoView/Classes/**/*.h",
+  "public_header_files": "SPAsyncVideoView/Classes/Public/**/*.h",
   "frameworks": [
     "UIKit",
     "Foundation",
     "AVFoundation",
     "ImageIO",
-    "MobileCoreServices"
+    "MobileCoreServices",
+    "CoreMedia"
   ],
   "requires_arc": true
 }
