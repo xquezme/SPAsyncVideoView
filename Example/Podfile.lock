@@ -1,6 +1,6 @@
 PODS:
   - JPFPSStatus (0.1)
-  - SPAsyncVideoView (0.5.0)
+  - SPAsyncVideoView (0.6.0)
 
 DEPENDENCIES:
   - JPFPSStatus (~> 0.1)
@@ -12,8 +12,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   JPFPSStatus: 4467a17488382e4c1700bd9d18c92ae581fd6305
-  SPAsyncVideoView: b16981dbdae825933e1dc3a47b5a8caa92c1d6fe
+  SPAsyncVideoView: e974dcc9c957b53ae32bfa715d9c10f6faac6125
 
 PODFILE CHECKSUM: a1b1c8b0add810fed3ad9f140883801f9d269cf4
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.2.1

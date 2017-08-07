@@ -1,10 +1,10 @@
 Pod::Spec.new do |s|
   s.name             = 'SPAsyncVideoView'
-  s.version          = '0.5.0'
-  s.summary          = 'Smooth asynchronous video view. Perfect for autoplay & loop videos/GIFs in UITableView/UICollectionView.'
+  s.version          = '0.6.0'
+  s.summary          = 'Smooth asynchronous loop video view. Perfect for UITableView/UICollectionView.'
   s.description      = <<-DESC
-                        Smooth asynchronous video view. Perfect for autoplay & loop videos/GIFs in UITableView/UICollectionView..
-                        Can play GIFs/videos with low memory footprint and on 60fps.
+                        Smooth asynchronous loop video view. Perfect for UITableView/UICollectionView.
+                        Can play videos with low memory footprint and on 60fps.
                        DESC
   s.homepage         = 'https://github.com/xquezme/SPAsyncVideoView'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }

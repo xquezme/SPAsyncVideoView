@@ -15,12 +15,7 @@
 
 - (void)prepareForReuse {
     [super prepareForReuse];
-    self.videoView.asset = nil;
-}
-
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    self.videoView.actionAtItemEnd = SPAsyncVideoViewActionAtItemEndRepeat;
+    self.videoView.assetURL = nil;
 }
 
 @end

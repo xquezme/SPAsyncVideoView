@@ -9,7 +9,6 @@
 #import "SPAsyncVideoReader.h"
 
 #import <AVFoundation/AVFoundation.h>
-#import "SPAsyncVideoAsset.h"
 
 
 @interface SPAsyncVideoReader ()
@@ -17,90 +16,83 @@
 @property (atomic, strong) AVURLAsset *nativeAsset;
 @property (atomic, strong) AVAssetReader *nativeAssetReader;
 @property (atomic, strong) AVAssetReaderTrackOutput *nativeOutVideo;
+@property (nonatomic, strong) NSURL *assetURL;
+@property (nonatomic, copy) dispatch_block_t completion;
 
 @end
 
 
 @implementation SPAsyncVideoReader
 
-- (instancetype)initWithAsset:(SPAsyncVideoAsset *)asset readingQueue:(dispatch_queue_t)readingQueue {
+- (instancetype)initWithAssetURL:(NSURL *)assetURL {
     self = [super init];
 
     if (self) {
-        _asset = asset;
-        _readingQueue = readingQueue;
+        _assetURL = assetURL;
+        _readingQueue = dispatch_queue_create("com.SPAsyncVideoReader", DISPATCH_QUEUE_SERIAL);
     }
 
     return self;
 }
 
-- (void)startReadingNativeAsset {
+#pragma mark - Private API
+
+- (void)startReadingNativeAsset:(AVURLAsset *)nativeAsset {
     NSError *error = nil;
 
-    AVAssetReader *assetReader = [[AVAssetReader alloc] initWithAsset:(AVAsset *)self.nativeAsset
-                                                                error:&error];
+    AVAssetReader *assetReader = [[AVAssetReader alloc] initWithAsset:(AVAsset *)nativeAsset error:&error];
 
     if (error != nil) {
-        [self notifyAboutError:error];
         return;
     }
 
-    NSArray<AVAssetTrack *> *videoTracks = [self.nativeAsset tracksWithMediaType:AVMediaTypeVideo];
+    NSArray<AVAssetTrack *> *videoTracks = [nativeAsset tracksWithMediaType:AVMediaTypeVideo];
     AVAssetTrack *videoTrack = videoTracks.firstObject;
 
     if (videoTrack == nil) {
-        NSError *error = [NSError errorWithDomain:AVFoundationErrorDomain
-                                             code:AVErrorOperationNotSupportedForAsset
-                                         userInfo:nil];
-        [self notifyAboutError:error];
         return;
     }
 
-    AVAssetReaderTrackOutput *outVideo = [AVAssetReaderTrackOutput assetReaderTrackOutputWithTrack:videoTrack
-                                                                                    outputSettings:self.asset.outputSettings];
+    NSDictionary *outputSettings = @{(id)kCVPixelBufferPixelFormatTypeKey: @(kCVPixelFormatType_420YpCbCr8BiPlanarFullRange)};
+
+    AVAssetReaderTrackOutput *outVideo = [AVAssetReaderTrackOutput assetReaderTrackOutputWithTrack:videoTrack outputSettings:outputSettings];
     outVideo.supportsRandomAccess = YES;
     [assetReader addOutput:outVideo];
 
     if (![assetReader startReading]) {
-        NSError *error = [NSError errorWithDomain:AVFoundationErrorDomain
-                                             code:AVErrorOperationNotSupportedForAsset
-                                         userInfo:nil];
-        [self notifyAboutError:error];
         return;
     }
 
-    _nativeAssetReader = assetReader;
-    _nativeOutVideo = outVideo;
-
     CGSize assetVideoSize = videoTrack.naturalSize;
 
-    __weak typeof (self) weakSelf = self;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        weakSelf.assetNaturalSize = assetVideoSize;
-        [weakSelf.delegate asyncVideoReaderReady:weakSelf];
-    });
-}
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        self.nativeAssetReader = assetReader;
+        self.nativeOutVideo = outVideo;
+        self.nativeAsset = nativeAsset;
+        self.assetNaturalSize = assetVideoSize;
 
-- (void)notifyAboutError:(NSError *)error {
-    __weak typeof (self) weakSelf = self;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [weakSelf.delegate asyncVideoReaderDidFailWithError:error];
+        if (self.completion) {
+            self.completion();
+        }
     });
 }
 
 #pragma mark - Public API
 
-- (void)startReading {
+- (void)startReadingWithCompletion:(dispatch_block_t)completion {
+    self.completion = completion;
+
     __weak typeof (self) weakSelf = self;
     dispatch_async(self.readingQueue, ^{
-        weakSelf.nativeAsset = [AVURLAsset assetWithURL:weakSelf.asset.finalURL];
+        AVURLAsset *asset = [AVURLAsset assetWithURL:weakSelf.assetURL];
 
         NSArray<NSString *> *keys = @[ @"tracks", @"playable", @"duration" ];
 
-        [weakSelf.nativeAsset loadValuesAsynchronouslyForKeys:keys completionHandler:^{
+        [asset loadValuesAsynchronouslyForKeys:keys completionHandler:^{
             if (weakSelf == nil) {
                 return;
             }
+
             dispatch_async(weakSelf.readingQueue, ^{
                 if (weakSelf == nil) {
                     return;
@@ -108,30 +100,33 @@
 
                 NSError *error = nil;
 
-                AVKeyValueStatus status = [weakSelf.nativeAsset statusOfValueForKey:@"tracks" error:&error];
+                AVKeyValueStatus status = [asset statusOfValueForKey:@"tracks" error:&error];
                 if (error != nil || status != AVKeyValueStatusLoaded) {
-                    [weakSelf notifyAboutError:error];
                     return;
                 }
 
-                status = [weakSelf.nativeAsset statusOfValueForKey:@"playable" error:&error];
+                status = [asset statusOfValueForKey:@"playable" error:&error];
 
                 if (error != nil || status != AVKeyValueStatusLoaded) {
-                    [weakSelf notifyAboutError:error];
                     return;
                 }
 
-                status = [weakSelf.nativeAsset statusOfValueForKey:@"duration" error:&error];
+                status = [asset statusOfValueForKey:@"duration" error:&error];
 
                 if (error != nil || status != AVKeyValueStatusLoaded) {
-                    [weakSelf notifyAboutError:error];
                     return;
                 }
-                
-                [weakSelf startReadingNativeAsset];
+
+                [weakSelf startReadingNativeAsset:asset];
             });
         }];
     });
+}
+
+- (void)cancelReading {
+    [self.nativeAsset cancelLoading];
+    [self.nativeAssetReader cancelReading];
+    self.completion = nil;
 }
 
 - (void)resetToBegining {

@@ -8,12 +8,6 @@
 #import <UIKit/UIKit.h>
 
 @class SPAsyncVideoView;
-@class SPAsyncVideoAsset;
-
-typedef NS_ENUM(NSInteger, SPAsyncVideoViewActionAtItemEnd) {
-    SPAsyncVideoViewActionAtItemEndNone,
-    SPAsyncVideoViewActionAtItemEndRepeat
-};
 
 typedef NS_ENUM(NSInteger, SPAsyncVideoViewVideoGravity) {
     SPAsyncVideoViewVideoGravityResizeAspect,
@@ -28,14 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @optional
 - (void)asyncVideoView:(SPAsyncVideoView *)asyncVideoView didOccurError:(NSError *)error;
 - (void)asyncVideoViewDidPlayToEnd:(SPAsyncVideoView *)asyncVideoView;
-
-- (void)asyncVideoViewWillRenderFirstFrame:(SPAsyncVideoView *)asyncVideoView;
-- (void)asyncVideoViewDidRenderFirstFrame:(SPAsyncVideoView *)asyncVideoView;
-
-- (void)asyncVideoViewWillFlush:(SPAsyncVideoView *)asyncVideoView;
-- (void)asyncVideoViewDidFlush:(SPAsyncVideoView *)asyncVideoView;
-
-- (void)asyncVideoView:(SPAsyncVideoView *)asyncVideoView didReceiveAssetNaturalSize:(CGSize)assetNaturalSize;
+- (void)asyncVideoViewWillBeginPlaying:(SPAsyncVideoView *)asyncVideoView assetNaturalSize:(CGSize)assetNaturalSize;
 
 @end
 
@@ -43,12 +30,10 @@ IB_DESIGNABLE
 @interface SPAsyncVideoView : UIView
 
 @property (nonatomic, weak) id<SPAsyncVideoViewDelegate> delegate;
-@property (nullable, nonatomic, strong) SPAsyncVideoAsset *asset;
 @property (nonatomic, assign) SPAsyncVideoViewVideoGravity videoGravity;
-@property (nonatomic, assign) SPAsyncVideoViewActionAtItemEnd actionAtItemEnd;
 @property (nonatomic, assign) IBInspectable BOOL autoPlay;
-@property (nonatomic, assign) IBInspectable BOOL restartPlaybackOnEnteringForeground;
-@property (nonatomic, strong, readonly) UIView *overlayView;
+
+@property (nonatomic, strong, nullable) NSURL *assetURL;
 
 - (void)playVideo;
 - (void)stopVideo;
